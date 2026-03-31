@@ -3,67 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Automation Society</title>
+  <title>Mettamotion — Build. Automate. Scale.</title>
 
-  <!-- Fonts: Space Grotesk (display) + DM Sans (body) + Space Mono (labels) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            navy:    { DEFAULT: '#080d18', 2: '#0d1526', 3: '#111d35', 4: '#182440' },
-            brand:   { DEFAULT: '#1a6fff', dim: '#1256cc', glow: '#4d97ff' },
-            teal:    { DEFAULT: '#00d4ff', dim: '#00a8cc' },
-            smoke:   { DEFAULT: '#8a9bbf', dim: '#3a4a6b' },
+            navy:  { DEFAULT:'#080d18', 2:'#0d1526', 3:'#111d35', 4:'#182440' },
+            brand: { DEFAULT:'#1a6fff', dim:'#1256cc', glow:'#4d97ff' },
+            teal:  { DEFAULT:'#00d4ff', dim:'#00a8cc' },
+            smoke: { DEFAULT:'#8a9bbf', dim:'#3a4a6b' },
           },
           fontFamily: {
-            display: ['Space Grotesk', 'sans-serif'],
-            body:    ['DM Sans', 'sans-serif'],
-            mono:    ['Space Mono', 'monospace'],
-          },
-          letterSpacing: {
-            tight2: '-0.03em',
-            wide2:  '0.12em',
-          },
-          lineHeight: {
-            body: '1.75',
-          },
-          boxShadow: {
-            'brand-sm':  '0 0 12px rgba(26,111,255,0.25)',
-            'brand-md':  '0 4px 24px rgba(26,111,255,0.35), 0 0 0 1px rgba(26,111,255,0.15)',
-            'brand-lg':  '0 8px 40px rgba(26,111,255,0.4), 0 0 60px rgba(0,212,255,0.15)',
-            'teal-glow': '0 0 20px rgba(0,212,255,0.5), 0 0 40px rgba(0,212,255,0.2)',
-            'card':      '0 2px 12px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05)',
-            'card-hover':'0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(26,111,255,0.2), 0 0 24px rgba(26,111,255,0.1)',
-          },
-          backgroundImage: {
-            'radial-brand': 'radial-gradient(ellipse at 60% 0%, rgba(26,111,255,0.2) 0%, transparent 60%)',
-            'radial-teal':  'radial-gradient(ellipse at 20% 100%, rgba(0,212,255,0.12) 0%, transparent 55%)',
-            'radial-center':'radial-gradient(circle at 50% 50%, rgba(26,111,255,0.18) 0%, transparent 65%)',
-            'card-gradient':'linear-gradient(145deg, rgba(17,29,53,1) 0%, rgba(13,21,38,1) 100%)',
-            'cta-gradient': 'linear-gradient(135deg, rgba(26,111,255,0.18) 0%, rgba(0,212,255,0.08) 100%)',
-          },
-          animation: {
-            'float':      'float 4s ease-in-out infinite',
-            'spin-slow':  'spin 22s linear infinite',
-            'spin-mid':   'spin-rev 14s linear infinite',
-            'spin-fast':  'spin 9s linear infinite',
-            'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
-            'dot-pulse':  'dot-pulse 2s ease-in-out infinite',
-            'fade-up':    'fade-up 0.6s ease forwards',
-          },
-          keyframes: {
-            float:       { '0%,100%': { transform: 'translateY(0) scale(1)' }, '50%': { transform: 'translateY(-12px) scale(1.03)' } },
-            'spin-rev':  { to: { transform: 'rotate(-360deg)' } },
-            'glow-pulse':{ '0%,100%': { transform: 'scale(1)', opacity: '0.7' }, '50%': { transform: 'scale(1.18)', opacity: '1' } },
-            'dot-pulse': { '0%,100%': { opacity: '1' }, '50%': { opacity: '0.3' } },
-            'fade-up':   { from: { opacity: '0', transform: 'translateY(22px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+            display: ['Space Grotesk','sans-serif'],
+            body:    ['DM Sans','sans-serif'],
+            mono:    ['Space Mono','monospace'],
           },
         }
       }
@@ -71,662 +31,874 @@
   </script>
 
   <style>
-    /* ─── Base ─── */
-    body { background-color: #080d18; color: #fff; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:#080d18;color:#fff;font-family:'DM Sans',sans-serif;overflow-x:hidden}
 
-    /* Grain texture overlay */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 128px 128px;
-      opacity: 0.028;
-    }
+    /* Grain */
+    body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size:128px 128px;opacity:0.025}
 
-    /* ─── Typography ─── */
-    .font-display { font-family: 'Space Grotesk', sans-serif; }
-    .font-mono    { font-family: 'Space Mono', monospace; }
+    /* Nav scroll */
+    #nav{transition:background .3s,box-shadow .3s,padding .3s}
+    #nav.scrolled{background:rgba(8,13,24,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(255,255,255,.05)}
 
-    /* ─── Scroll-triggered fade-up ─── */
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.16,1,0.3,1); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* Logo */
+    .logo-img{filter:brightness(0) invert(1) drop-shadow(0 0 6px rgba(0,212,255,.45));transition:transform .2s}
+    .logo-img:hover{transform:scale(1.06)}
 
-    /* ─── Nav ─── */
-    #navbar { transition: background 0.3s, padding 0.3s, box-shadow 0.3s; }
-    #navbar.scrolled { background: rgba(8,13,24,0.88); backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(255,255,255,0.05); }
+    /* Buttons */
+    .btn-p{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:8px;
+      background:#1a6fff;color:#fff;font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;
+      letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+      box-shadow:0 4px 20px rgba(26,111,255,.35),0 0 0 1px rgba(26,111,255,.15);
+      transition:background .2s,box-shadow .2s,transform .15s}
+    .btn-p:hover{background:#4d97ff;box-shadow:0 8px 36px rgba(26,111,255,.5);transform:translateY(-2px)}
+    .btn-p:focus-visible{outline:2px solid #00d4ff;outline-offset:3px}
+    .btn-p:active{transform:translateY(0)}
 
-    /* ─── Logo ─── */
-    .logo-img { filter: brightness(0) invert(1) drop-shadow(0 0 6px rgba(0,212,255,0.5)); }
-    .hero-logo-img {
-      filter:
-        brightness(0) invert(1)
-        drop-shadow(0 0 16px rgba(26,111,255,1))
-        drop-shadow(0 0 40px rgba(0,212,255,0.7))
-        drop-shadow(0 0 80px rgba(26,111,255,0.4));
-    }
+    .btn-o{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:8px;
+      background:transparent;color:#fff;font-family:'Space Mono',monospace;font-size:.75rem;font-weight:400;
+      letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+      border:1px solid rgba(255,255,255,.12);
+      transition:border-color .2s,color .2s,box-shadow .2s,transform .15s}
+    .btn-o:hover{border-color:#00d4ff;color:#00d4ff;box-shadow:0 0 16px rgba(0,212,255,.18);transform:translateY(-1px)}
+    .btn-o:focus-visible{outline:2px solid #00d4ff;outline-offset:3px}
+    .btn-o:active{transform:translateY(0)}
 
-    /* ─── Rings ─── */
-    .ring { position: absolute; inset: 0; border-radius: 9999px; }
-    .ring-outer { border: 1px solid rgba(26,111,255,0.22); animation: spin 22s linear infinite; }
-    .ring-mid   { inset: 42px; border: 1px dashed rgba(0,212,255,0.18); animation: spin-rev 14s linear infinite; }
-    .ring-inner { inset: 84px; border: 1px solid rgba(26,111,255,0.12); animation: spin 9s linear infinite; }
-    @keyframes spin     { to { transform: rotate(360deg); } }
-    @keyframes spin-rev { to { transform: rotate(-360deg); } }
+    /* Tag pill */
+    .pill{display:inline-flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;
+      font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#00d4ff}
+    .pill::before{content:'//';opacity:.4}
 
-    .ring-outer::before {
-      content: ''; position: absolute;
-      width: 10px; height: 10px; border-radius: 9999px;
-      background: #00d4ff; box-shadow: 0 0 14px #00d4ff, 0 0 28px rgba(0,212,255,0.6);
-      top: -5px; left: 50%; transform: translateX(-50%);
-    }
-    .ring-mid::before {
-      content: ''; position: absolute;
-      width: 8px; height: 8px; border-radius: 9999px;
-      background: #1a6fff; box-shadow: 0 0 14px #1a6fff, 0 0 28px rgba(26,111,255,0.6);
-      bottom: -4px; right: 18%;
-    }
+    /* Article card */
+    .a-card{
+      --glow-x:-9999px;--glow-y:-9999px;--glow-xp:0;--glow-size:280;--glow-hue:220;
+      background-image:
+        radial-gradient(calc(var(--glow-size)*1px) calc(var(--glow-size)*1px) at calc(var(--glow-x)*1px) calc(var(--glow-y)*1px),
+          hsl(calc(var(--glow-hue) + var(--glow-xp)*60) 100% 65% / .09), transparent),
+        linear-gradient(145deg,#111d35,#0d1526);
+      background-attachment:fixed,scroll;
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:16px;display:flex;flex-direction:column;height:100%;
+      position:relative;
+      transition:border-color .25s,transform .25s,box-shadow .25s}
+    .a-card:hover{border-color:rgba(26,111,255,.28);transform:translateY(-5px);
+      box-shadow:0 16px 40px rgba(0,0,0,.5),0 0 0 1px rgba(26,111,255,.15),0 0 24px rgba(26,111,255,.08)}
 
-    /* ─── Glow backdrop ─── */
-    .glow-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
-    .glow-bg::before {
-      content: ''; width: 200px; height: 200px; border-radius: 9999px;
-      background: radial-gradient(circle, rgba(26,111,255,0.38) 0%, rgba(0,212,255,0.18) 40%, transparent 70%);
-      animation: glow-pulse 3s ease-in-out infinite;
-    }
-    @keyframes glow-pulse { '0%,100%': { transform: scale(1); opacity: 0.7; } '50%': { transform: scale(1.18); opacity: 1; } }
+    /* Glow border — ::before = coloured glow, ::after = white highlight */
+    .a-card::before,.a-card::after{
+      pointer-events:none;content:"";position:absolute;
+      inset:-1px;border:1px solid transparent;border-radius:16px;
+      background-attachment:fixed;
+      background-size:calc(100% + 2px) calc(100% + 2px);
+      background-repeat:no-repeat;background-position:50% 50%;
+      mask:linear-gradient(transparent,transparent),linear-gradient(#fff,#fff);
+      mask-clip:padding-box,border-box;mask-composite:intersect;
+      -webkit-mask:linear-gradient(transparent,transparent),linear-gradient(#fff,#fff);
+      -webkit-mask-clip:padding-box,border-box;-webkit-mask-composite:source-in}
+    .a-card::before{
+      background-image:radial-gradient(
+        calc(var(--glow-size)*0.75px) calc(var(--glow-size)*0.75px) at calc(var(--glow-x)*1px) calc(var(--glow-y)*1px),
+        hsl(calc(var(--glow-hue) + var(--glow-xp)*60) 100% 50% / 1), transparent 100%);
+      filter:brightness(2)}
+    .a-card::after{
+      background-image:radial-gradient(
+        calc(var(--glow-size)*0.45px) calc(var(--glow-size)*0.45px) at calc(var(--glow-x)*1px) calc(var(--glow-y)*1px),
+        hsl(0 100% 100% / .55), transparent 100%)}
 
-    /* ─── Cards ─── */
-    .card {
-      background: linear-gradient(145deg, #111d35, #0d1526);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px;
-      position: relative; overflow: hidden;
-      transition: border-color 0.25s cubic-bezier(0.16,1,0.3,1),
-                  transform   0.25s cubic-bezier(0.16,1,0.3,1),
-                  box-shadow  0.25s cubic-bezier(0.16,1,0.3,1);
-    }
-    .card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, #1a6fff, transparent);
-      opacity: 0; transition: opacity 0.25s;
-    }
-    .card:hover { border-color: rgba(26,111,255,0.28); transform: translateY(-5px); box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(26,111,255,0.18), 0 0 24px rgba(26,111,255,0.1); }
-    .card:hover::before { opacity: 1; }
+    .a-card-img{position:relative;width:100%;aspect-ratio:1/1;flex-shrink:0;overflow:hidden}
+    .a-card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;
+      transition:transform .4s cubic-bezier(.16,1,.3,1);filter:brightness(.9)}
+    .a-card:hover .a-card-img img{transform:scale(1.05)}
+    .a-card-img::after{content:'';position:absolute;inset:0;
+      background:linear-gradient(to bottom,transparent 40%,rgba(8,13,24,.7) 100%)}
 
-    /* ─── Buttons ─── */
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 32px; border-radius: 8px;
-      background: #1a6fff; color: #fff;
-      font-family: 'Space Mono', monospace; font-size: 0.8rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
-      border: none; cursor: pointer;
-      box-shadow: 0 4px 24px rgba(26,111,255,0.35), 0 0 0 1px rgba(26,111,255,0.15);
-      transition: background 0.2s cubic-bezier(0.16,1,0.3,1),
-                  box-shadow 0.2s cubic-bezier(0.16,1,0.3,1),
-                  transform  0.15s cubic-bezier(0.16,1,0.3,1);
-    }
-    .btn-primary:hover  { background: #4d97ff; box-shadow: 0 8px 40px rgba(26,111,255,0.5), 0 0 60px rgba(0,212,255,0.15); transform: translateY(-2px); }
-    .btn-primary:focus-visible { outline: 2px solid #00d4ff; outline-offset: 3px; }
-    .btn-primary:active { transform: translateY(0); box-shadow: 0 2px 12px rgba(26,111,255,0.3); }
+    /* Category badge on image */
+    .cat-badge{position:absolute;top:14px;left:14px;z-index:2;
+      padding:5px 11px;border-radius:100px;
+      font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+      background:rgba(26,111,255,.22);border:1px solid rgba(26,111,255,.4);color:#4d97ff;
+      backdrop-filter:blur(8px)}
 
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 13px 30px; border-radius: 8px;
-      background: transparent; color: #fff;
-      font-family: 'Space Mono', monospace; font-size: 0.8rem; font-weight: 500;
-      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.12); cursor: pointer;
-      transition: border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
-    }
-    .btn-outline:hover  { border-color: #00d4ff; color: #00d4ff; box-shadow: 0 0 16px rgba(0,212,255,0.18); transform: translateY(-1px); }
-    .btn-outline:focus-visible { outline: 2px solid #00d4ff; outline-offset: 3px; }
-    .btn-outline:active { transform: translateY(0); }
+    /* Featured card */
+    .a-card-feat{background:linear-gradient(145deg,#111d35,#0d1526);border:1px solid rgba(255,255,255,.06);
+      border-radius:20px;overflow:hidden;
+      transition:border-color .25s,transform .25s,box-shadow .25s}
+    .a-card-feat:hover{border-color:rgba(26,111,255,.28);transform:translateY(-4px);
+      box-shadow:0 16px 40px rgba(0,0,0,.5),0 0 24px rgba(26,111,255,.1)}
+    .a-card-feat-img{position:relative;overflow:hidden}
+    .a-card-feat-img img{width:100%;height:100%;object-fit:cover;object-position:center top;
+      transition:transform .4s;filter:brightness(.85)}
+    .a-card-feat:hover .a-card-feat-img img{transform:scale(1.04)}
+    .a-card-feat-img::after{content:'';position:absolute;inset:0;
+      background:linear-gradient(to bottom,transparent 40%,rgba(8,13,24,.9) 100%)}
 
-    /* ─── Steps connector ─── */
-    @media (min-width: 768px) {
-      .steps-row::before {
-        content: ''; position: absolute;
-        top: 36px; left: 12.5%; right: 12.5%;
-        height: 1px; background: linear-gradient(90deg, transparent, #3a4a6b, #3a4a6b, transparent);
-      }
-    }
+    /* Scroll reveal */
+    .reveal{opacity:0;transform:translateY(20px);
+      transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1)}
+    .reveal.on{opacity:1;transform:translateY(0)}
 
-    /* ─── Misc ─── */
-    .tag-pill {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: 'Space Mono', monospace; font-size: 0.68rem;
-      letter-spacing: 0.14em; text-transform: uppercase; color: #00d4ff;
-    }
-    .tag-pill::before { content: '//'; opacity: 0.45; }
+    /* Grid line overlay */
+    .grid-bg{
+      background-image:linear-gradient(rgba(26,111,255,.05) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(26,111,255,.05) 1px,transparent 1px);
+      background-size:64px 64px;
+      mask-image:radial-gradient(ellipse 85% 90% at 50% 50%,black 20%,transparent 100%)}
 
-    .hero-grid-bg {
-      background-image: linear-gradient(rgba(26,111,255,0.055) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(26,111,255,0.055) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
-    }
+    /* Hero logo animation */
+    @keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-10px) scale(1.025)}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes spin-r{to{transform:rotate(-360deg)}}
+    @keyframes gp{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.2);opacity:1}}
+    @keyframes dp{0%,100%{opacity:1}50%{opacity:.25}}
 
-    .stat-bar { width: 3px; border-radius: 9999px; background: #3a4a6b; }
-    .stat-bar-fill { border-radius: 9999px; background: linear-gradient(180deg, #00d4ff, #1a6fff); }
+    /* Newsletter input */
+    .nl-input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;
+      padding:14px 18px;color:#fff;font-family:'DM Sans',sans-serif;font-size:.9rem;width:100%;
+      outline:none;transition:border-color .2s,box-shadow .2s}
+    .nl-input::placeholder{color:#8a9bbf}
+    .nl-input:focus{border-color:#1a6fff;box-shadow:0 0 0 3px rgba(26,111,255,.15)}
+
+    /* Reading time dot */
+    .rdot::before{content:'·';margin:0 6px;color:#3a4a6b}
+
+    /* Skeleton pulse */
+    @keyframes skeleton-pulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+    /* Glow button */
+    .btn-glow{display:inline-flex;align-items:center;gap:8px;padding:13px 32px;border-radius:8px;
+      background:#1a6fff;color:#fff;font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;
+      letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;position:relative;
+      box-shadow:0 0 18px rgba(26,111,255,.7),0 0 40px rgba(26,111,255,.35),0 4px 20px rgba(26,111,255,.4);
+      transition:box-shadow .3s,transform .15s,background .2s;
+      animation:btn-pulse 2.5s ease-in-out infinite}
+    .btn-glow:hover{background:#4d97ff;transform:translateY(-2px);
+      box-shadow:0 0 28px rgba(77,151,255,.9),0 0 60px rgba(26,111,255,.5),0 8px 36px rgba(26,111,255,.5)}
+    @keyframes btn-pulse{
+      0%,100%{box-shadow:0 0 18px rgba(26,111,255,.7),0 0 40px rgba(26,111,255,.35),0 4px 20px rgba(26,111,255,.4)}
+      50%{box-shadow:0 0 28px rgba(0,212,255,.8),0 0 55px rgba(26,111,255,.5),0 4px 24px rgba(0,212,255,.4)}}
+
+    /* Talk modal */
+    #talk-modal{display:none;position:fixed;inset:0;z-index:200;align-items:center;justify-content:center;
+      background:rgba(8,13,24,.85);backdrop-filter:blur(10px);padding:24px}
+    #talk-modal .modal-box{background:linear-gradient(145deg,#111d35,#0d1526);border:1px solid rgba(26,111,255,.25);
+      border-radius:20px;padding:44px 40px;width:100%;max-width:640px;position:relative;
+      box-shadow:0 32px 80px rgba(0,0,0,.6),0 0 0 1px rgba(26,111,255,.1)}
+    .talk-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+      border-radius:8px;padding:13px 16px;color:#fff;font-family:'DM Sans',sans-serif;font-size:.9rem;
+      outline:none;transition:border-color .2s,box-shadow .2s;box-sizing:border-box}
+    .talk-input::placeholder{color:#8a9bbf}
+    .talk-input:focus{border-color:#1a6fff;box-shadow:0 0 0 3px rgba(26,111,255,.15)}
+    textarea.talk-input{resize:vertical;min-height:110px}
   </style>
 </head>
 <body class="relative">
 
-  <!-- ═══════════════════════════════════════════
-       NAV
-  ═══════════════════════════════════════════ -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-5">
-    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between gap-6">
+<!-- ════════════════════════════════
+     NAV
+════════════════════════════════ -->
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 py-5">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between gap-6">
 
-      <!-- Logo -->
-      <a href="#" class="flex items-center gap-3 group">
-        <img src="brand_asset/LogoMakr-9nt01b.png" alt="AIS" class="h-9 w-auto logo-img transition-transform duration-200 group-hover:scale-105" />
-        <span class="font-mono text-sm font-bold leading-tight tracking-wide">
-          AI Automation<br><span class="text-teal-DEFAULT" style="color:#00d4ff">Society</span>
-        </span>
-      </a>
+    <a href="/" class="flex items-center">
+      <img src="brand_asset/LogoMakr-9nt01b.png" alt="Mettamotion" class="logo-img" style="height:42px;width:auto" />
+    </a>
 
-      <!-- Links -->
-      <ul class="hidden md:flex items-center gap-9 list-none">
-        <li><a href="#what"          class="font-mono text-xs tracking-widest uppercase text-smoke-DEFAULT hover:text-white transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-DEFAULT focus-visible:outline-offset-4 rounded" style="color:#8a9bbf">What We Do</a></li>
-        <li><a href="#how"           class="font-mono text-xs tracking-widest uppercase text-smoke-DEFAULT hover:text-white transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-DEFAULT focus-visible:outline-offset-4 rounded" style="color:#8a9bbf">How It Works</a></li>
-        <li><a href="#community"     class="font-mono text-xs tracking-widest uppercase text-smoke-DEFAULT hover:text-white transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-DEFAULT focus-visible:outline-offset-4 rounded" style="color:#8a9bbf">Community</a></li>
-        <li><a href="#testimonials"  class="font-mono text-xs tracking-widest uppercase text-smoke-DEFAULT hover:text-white transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-DEFAULT focus-visible:outline-offset-4 rounded" style="color:#8a9bbf">Members</a></li>
-      </ul>
+    <ul class="hidden md:flex items-center gap-10" style="list-style:none">
+      <li><a href="/blog" style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:.01em;color:#ffffff;text-decoration:none;transition:color .2s,text-shadow .2s" onmouseover="this.style.color='#00d4ff';this.style.textShadow='0 0 20px rgba(0,212,255,.5)'" onmouseout="this.style.color='#ffffff';this.style.textShadow='none'">Blog</a></li>
+      <li><a href="/contact" style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:.01em;color:#ffffff;text-decoration:none;transition:color .2s,text-shadow .2s" onmouseover="this.style.color='#00d4ff';this.style.textShadow='0 0 20px rgba(0,212,255,.5)'" onmouseout="this.style.color='#ffffff';this.style.textShadow='none'">Contact</a></li>
+    </ul>
 
-      <!-- CTAs -->
-      <div class="flex items-center gap-3">
-        <a href="#cta" class="btn-outline hidden sm:inline-flex">Log In</a>
-        <a href="#cta" class="btn-primary">Join Free →</a>
+    <a href="/free-audit" class="btn-p">Free Audit →</a>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════
+     HERO
+════════════════════════════════ -->
+<section class="relative min-h-screen flex items-center overflow-hidden pt-24 pb-20">
+
+  <!-- Gradients -->
+  <div class="pointer-events-none absolute inset-0">
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse 65% 55% at 68% -5%,rgba(26,111,255,.22) 0%,transparent 60%)"></div>
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse 50% 45% at 10% 110%,rgba(0,212,255,.11) 0%,transparent 55%)"></div>
+    <div class="absolute inset-0" style="background:radial-gradient(circle at 50% 50%,rgba(26,111,255,.05) 0%,transparent 50%)"></div>
+  </div>
+  <div class="pointer-events-none absolute inset-0 grid-bg"></div>
+
+  <!-- ── Pulse Beams ── -->
+  <div class="pointer-events-none absolute inset-0 overflow-hidden" style="z-index:2">
+    <svg id="pulse-beams-svg" width="100%" height="100%" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- Base paths — flowing across background, clear of the logo area -->
+      <path d="M 0 160 C 280 120 580 200 860 140 C 1020 110 1200 80 1400 100" stroke="rgba(26,111,255,0.07)" stroke-width="1"/>
+      <path d="M 0 740 C 300 780 620 700 900 760 C 1080 800 1260 750 1400 770" stroke="rgba(26,111,255,0.07)" stroke-width="1"/>
+      <path d="M 120 0 C 80 180 160 380 100 580 C 60 720 140 820 100 900"       stroke="rgba(0,212,255,0.05)"  stroke-width="1"/>
+
+      <!-- Animated beams -->
+      <path id="beam-path-0" d="M 0 160 C 280 120 580 200 860 140 C 1020 110 1200 80 1400 100" stroke="url(#beam-grad-0)" stroke-width="1.5" stroke-linecap="round"/>
+      <path id="beam-path-1" d="M 0 740 C 300 780 620 700 900 760 C 1080 800 1260 750 1400 770" stroke="url(#beam-grad-1)" stroke-width="1.5" stroke-linecap="round"/>
+      <path id="beam-path-2" d="M 120 0 C 80 180 160 380 100 580 C 60 720 140 820 100 900"       stroke="url(#beam-grad-2)" stroke-width="1.5" stroke-linecap="round"/>
+
+      <defs>
+        <linearGradient id="beam-grad-0" gradientUnits="userSpaceOnUse" x1="0" y1="160" x2="200" y2="140">
+          <stop offset="0%"   stop-color="#1a6fff" stop-opacity="0"/>
+          <stop offset="40%"  stop-color="#1a6fff" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="beam-grad-1" gradientUnits="userSpaceOnUse" x1="0" y1="740" x2="200" y2="760">
+          <stop offset="0%"   stop-color="#00d4ff" stop-opacity="0"/>
+          <stop offset="40%"  stop-color="#00d4ff" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#1a6fff" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="beam-grad-2" gradientUnits="userSpaceOnUse" x1="120" y1="0" x2="105" y2="150">
+          <stop offset="0%"   stop-color="#1a6fff" stop-opacity="0"/>
+          <stop offset="40%"  stop-color="#1a6fff" stop-opacity="0.75"/>
+          <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left -->
+      <div>
+        <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(2.6rem,5.5vw,4.2rem);font-weight:700;line-height:1.08;letter-spacing:-.03em;margin-bottom:1.4rem">
+          Insights That Help You<br>
+          <span style="color:#1a6fff">Automate</span> &amp; <span style="color:#00d4ff">Grow.</span>
+        </h1>
+
+        <p style="font-size:1.05rem;color:#8a9bbf;line-height:1.75;max-width:460px;margin-bottom:2.5rem">
+          Deep-dive articles on AI automation, digital marketing, and scaling systems — written for builders who want results, not theory.
+        </p>
+
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:3.5rem">
+          <a href="/blog" class="btn-p">Read the Blog →</a>
+          <a href="/free-audit" class="btn-o">Get a Free Audit</a>
+        </div>
+
+        <!-- Topics row -->
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <span style="padding:7px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.08);font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#8a9bbf">#AI Agents</span>
+          <span style="padding:7px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.08);font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#8a9bbf">#SEO Strategy</span>
+          <span style="padding:7px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.08);font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#8a9bbf">#Automation</span>
+          <span style="padding:7px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.08);font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#8a9bbf">#Marketing</span>
+        </div>
       </div>
-    </div>
-  </nav>
 
+      <!-- Right — Logo Visual -->
+      <div style="display:flex;align-items:center;justify-content:center">
+        <div style="position:relative;width:400px;height:400px">
+          <!-- Rings -->
+          <div style="position:absolute;inset:0;border-radius:50%;border:1px solid rgba(26,111,255,.22);animation:spin 22s linear infinite">
+            <div style="position:absolute;width:10px;height:10px;border-radius:50%;background:#00d4ff;box-shadow:0 0 14px #00d4ff,0 0 28px rgba(0,212,255,.6);top:-5px;left:50%;transform:translateX(-50%)"></div>
+          </div>
+          <div style="position:absolute;inset:40px;border-radius:50%;border:1px dashed rgba(0,212,255,.18);animation:spin-r 14s linear infinite">
+            <div style="position:absolute;width:8px;height:8px;border-radius:50%;background:#1a6fff;box-shadow:0 0 14px #1a6fff,0 0 28px rgba(26,111,255,.6);bottom:-4px;right:18%"></div>
+          </div>
+          <div style="position:absolute;inset:80px;border-radius:50%;border:1px solid rgba(26,111,255,.12);animation:spin 9s linear infinite"></div>
 
-  <!-- ═══════════════════════════════════════════
-       HERO
-  ═══════════════════════════════════════════ -->
-  <section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-28 pb-20">
-
-    <!-- Multi-layer radial gradients -->
-    <div class="pointer-events-none absolute inset-0">
-      <div class="absolute inset-0" style="background: radial-gradient(ellipse 70% 60% at 70% -5%, rgba(26,111,255,0.22) 0%, transparent 60%);"></div>
-      <div class="absolute inset-0" style="background: radial-gradient(ellipse 55% 50% at 15% 110%, rgba(0,212,255,0.12) 0%, transparent 55%);"></div>
-      <div class="absolute inset-0" style="background: radial-gradient(circle at 50% 50%, rgba(26,111,255,0.06) 0%, transparent 50%);"></div>
-    </div>
-
-    <!-- Grid -->
-    <div class="pointer-events-none absolute inset-0 hero-grid-bg"></div>
-
-    <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-        <!-- Left -->
-        <div class="max-w-xl">
-          <!-- Live badge -->
-          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border mb-8"
-               style="background:rgba(26,111,255,0.1);border-color:rgba(26,111,255,0.28)">
-            <span class="w-1.5 h-1.5 rounded-full bg-teal-DEFAULT animate-[dot-pulse_2s_ease-in-out_infinite]" style="background:#00d4ff;animation:dot-pulse 2s ease-in-out infinite"></span>
-            <span class="font-mono text-xs tracking-widest uppercase" style="color:#00d4ff">Now Accepting Members</span>
+          <!-- Glow -->
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none">
+            <div style="width:190px;height:190px;border-radius:50%;background:radial-gradient(circle,rgba(26,111,255,.38) 0%,rgba(0,212,255,.18) 40%,transparent 70%);animation:gp 3s ease-in-out infinite"></div>
           </div>
 
-          <h1 class="font-display font-extrabold leading-[1.08] mb-6"
-              style="font-size:clamp(2.6rem,5.5vw,4rem);letter-spacing:-0.03em">
-            Automate Smarter.<br>
-            Scale <span style="color:#1a6fff">Faster.</span><br>
-            <span style="color:#00d4ff">Together.</span>
-          </h1>
+          <!-- Logo -->
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+            <img src="brand_asset/LogoMakr-9nt01b.png" alt="Mettamotion"
+                 style="width:165px;height:165px;object-fit:contain;animation:float 4s ease-in-out infinite;
+                 filter:brightness(0) invert(1) drop-shadow(0 0 16px rgba(26,111,255,1)) drop-shadow(0 0 40px rgba(0,212,255,.7)) drop-shadow(0 0 80px rgba(26,111,255,.4))" />
+          </div>
 
-          <p class="text-base leading-[1.75] mb-10 max-w-md" style="color:#8a9bbf">
-            The premier community for AI automation practitioners. Learn, build, and deploy intelligent systems with members reshaping industries — one workflow at a time.
+          <!-- Floating stat pills -->
+          <div style="position:absolute;right:-16px;bottom:60px;background:linear-gradient(145deg,#111d35,#0d1526);border:1px solid rgba(26,111,255,.2);border-radius:12px;padding:12px 16px;min-width:160px;box-shadow:0 8px 24px rgba(0,0,0,.4)">
+            <div style="font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:#8a9bbf;margin-bottom:4px">Weekly Readers</div>
+            <div style="font-family:'Space Mono',monospace;font-size:1rem;font-weight:700;color:#00d4ff">↑ 12,400</div>
+          </div>
+          <div style="position:absolute;left:-16px;top:60px;background:linear-gradient(145deg,#111d35,#0d1526);border:1px solid rgba(26,111,255,.2);border-radius:12px;padding:12px 16px;min-width:160px;box-shadow:0 8px 24px rgba(0,0,0,.4)">
+            <div style="font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:#8a9bbf;margin-bottom:4px">Articles Published</div>
+            <div style="font-family:'Space Mono',monospace;font-size:1rem;font-weight:700;color:#00d4ff">↑ 180+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════
+     FEATURED ARTICLE (top pick)
+════════════════════════════════ -->
+<section style="background:linear-gradient(180deg,#080d18 0%,#0d1526 100%);padding:100px 0 60px">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="reveal" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px">
+      <div>
+        <div class="pill" style="margin-bottom:10px">🔥 Most Popular</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:700;letter-spacing:-.025em">Editor's Pick</h2>
+      </div>
+      <a href="https://mettamotion.com/blog" class="btn-o" style="font-size:.7rem">View All Articles →</a>
+    </div>
+
+    <!-- Featured card — filled by JS -->
+    <!-- Default card shown immediately — JS replaces with live data when API responds -->
+    <div id="featured-card">
+      <div class="a-card-feat" style="display:grid;grid-template-columns:1fr 1fr;min-height:420px">
+        <div class="a-card-feat-img" style="height:100%;min-height:340px">
+          <img src="https://placehold.co/720x480/0d1526/1a6fff?text=Mettamotion" alt="Featured post" />
+          <div style="position:absolute;top:20px;left:20px;z-index:2" class="cat-badge">AI</div>
+          <div style="position:absolute;top:20px;right:20px;z-index:2;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:100px;background:rgba(255,60,60,.18);border:1px solid rgba(255,80,80,.35);font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#ff6b6b;backdrop-filter:blur(8px)">🔥 Trending</div>
+        </div>
+        <div style="padding:52px 48px;display:flex;flex-direction:column;justify-content:center">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#8a9bbf">
+            Mar 28, 2026 <span style="color:#3a4a6b">·</span> 7 min read
+          </div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:700;letter-spacing:-.025em;line-height:1.15;margin-bottom:16px">
+            Melania Trump AI Robot Makes History at White House Education Summit
+          </h3>
+          <p style="font-size:.92rem;color:#8a9bbf;line-height:1.75;margin-bottom:32px">
+            AI Robot Figure G3 joins Melania Trump at the White House, marking a pivotal moment in the public role of humanoid AI in education and policy.
           </p>
-
-          <div class="flex flex-wrap gap-3 mb-14">
-            <a href="#cta" class="btn-primary">Join the Society →</a>
-            <a href="#what" class="btn-outline">Explore What We Do</a>
-          </div>
-
-          <!-- Stats row -->
-          <div class="flex gap-10 pt-8 border-t" style="border-color:rgba(58,74,107,0.6)">
-            <div>
-              <div class="font-mono font-bold text-2xl leading-none mb-1">2.4<span style="color:#00d4ff">K+</span></div>
-              <div class="text-xs tracking-wide" style="color:#8a9bbf">Active Members</div>
-            </div>
-            <div>
-              <div class="font-mono font-bold text-2xl leading-none mb-1">180<span style="color:#00d4ff">+</span></div>
-              <div class="text-xs tracking-wide" style="color:#8a9bbf">Automation Blueprints</div>
-            </div>
-            <div>
-              <div class="font-mono font-bold text-2xl leading-none mb-1">98<span style="color:#00d4ff">%</span></div>
-              <div class="text-xs tracking-wide" style="color:#8a9bbf">Satisfaction Rate</div>
-            </div>
-          </div>
+          <a href="https://mettamotion.com/melania-trump-ai-robot-history/" class="btn-p" style="width:fit-content">Read Article →</a>
         </div>
-
-        <!-- Right — Logo visual -->
-        <div class="relative flex items-center justify-center">
-          <div class="relative" style="width:420px;height:420px">
-            <div class="ring ring-outer"></div>
-            <div class="ring ring-mid"></div>
-            <div class="ring ring-inner"></div>
-            <div class="glow-bg"></div>
-
-            <!-- Logo -->
-            <div class="absolute inset-0 flex items-center justify-center">
-              <img src="brand_asset/LogoMakr-9nt01b.png" alt="AIS Logo"
-                   class="hero-logo-img animate-[float_4s_ease-in-out_infinite]"
-                   style="width:175px;height:175px;object-fit:contain;animation:float 4s ease-in-out infinite" />
-            </div>
-
-            <!-- Floating stat cards -->
-            <div class="absolute -right-4 bottom-12 card px-4 py-3 min-w-[168px]"
-                 style="box-shadow:0 8px 24px rgba(0,0,0,0.4)">
-              <div class="font-mono text-[0.62rem] tracking-widest uppercase mb-1" style="color:#8a9bbf">Hours Saved / Mo</div>
-              <div class="font-mono font-bold text-lg" style="color:#00d4ff">↑ 1,240h</div>
-            </div>
-            <div class="absolute -left-4 top-16 card px-4 py-3 min-w-[168px]"
-                 style="box-shadow:0 8px 24px rgba(0,0,0,0.4)">
-              <div class="font-mono text-[0.62rem] tracking-widest uppercase mb-1" style="color:#8a9bbf">Workflows Deployed</div>
-              <div class="font-mono font-bold text-lg" style="color:#00d4ff">↑ 3,870</div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
-  </section>
+
+  </div>
+</section>
 
 
-  <!-- ═══════════════════════════════════════════
-       WHAT WE DO
-  ═══════════════════════════════════════════ -->
-  <section id="what" class="relative py-28" style="background:linear-gradient(180deg,#080d18 0%,#0d1526 100%)">
-    <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(26,111,255,0.07) 0%,transparent 60%)"></div>
+<!-- ════════════════════════════════
+     LATEST ARTICLES
+════════════════════════════════ -->
+<section style="background:#0d1526;padding:80px 0 100px">
+  <div class="max-w-7xl mx-auto px-6">
 
-    <div class="relative z-10 max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16 reveal">
-        <div class="tag-pill mb-4">What We Do</div>
-        <h2 class="font-display font-extrabold mb-4" style="font-size:clamp(1.9rem,3.5vw,2.9rem);letter-spacing:-0.03em;line-height:1.12">
-          Everything You Need to<br>Master AI Automation
+    <div class="reveal" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:16px">
+      <div>
+        <div class="pill" style="margin-bottom:10px">Latest Articles</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:700;letter-spacing:-.025em">Fresh From the Blog</h2>
+      </div>
+      <a href="/blog" class="btn-o" style="font-size:.7rem">Browse All →</a>
+    </div>
+
+    <!-- Posts injected here by JS -->
+    <div id="posts-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch">
+      <!-- Skeleton loaders -->
+      <div class="a-card skeleton-card" style="animation:skeleton-pulse 1.5s ease-in-out infinite"><div style="height:200px;background:rgba(255,255,255,.04);border-radius:8px 8px 0 0"></div><div style="padding:28px"><div style="height:10px;background:rgba(255,255,255,.04);border-radius:4px;margin-bottom:16px;width:40%"></div><div style="height:14px;background:rgba(255,255,255,.06);border-radius:4px;margin-bottom:10px"></div><div style="height:14px;background:rgba(255,255,255,.06);border-radius:4px;margin-bottom:10px;width:80%"></div><div style="height:10px;background:rgba(255,255,255,.04);border-radius:4px;margin-top:20px;width:30%"></div></div></div>
+      <div class="a-card skeleton-card" style="animation:skeleton-pulse 1.5s ease-in-out infinite .15s"><div style="height:200px;background:rgba(255,255,255,.04);border-radius:8px 8px 0 0"></div><div style="padding:28px"><div style="height:10px;background:rgba(255,255,255,.04);border-radius:4px;margin-bottom:16px;width:40%"></div><div style="height:14px;background:rgba(255,255,255,.06);border-radius:4px;margin-bottom:10px"></div><div style="height:14px;background:rgba(255,255,255,.06);border-radius:4px;margin-bottom:10px;width:80%"></div><div style="height:10px;background:rgba(255,255,255,.04);border-radius:4px;margin-top:20px;width:30%"></div></div></div>
+      <div class="a-card skeleton-card" style="animation:skeleton-pulse 1.5s ease-in-out infinite .3s"><div style="height:200px;background:rgba(255,255,255,.04);border-radius:8px 8px 0 0"></div><div style="padding:28px"><div style="height:10px;background:rgba(255,255,255,.04);border-radius:4px;margin-bottom:16px;width:40%"></div><div style="height:14px;background:rgba(255,255,255,.06);border-radius:4px;margin-bottom:10px"></div><div style="height:14px;background:rgba(255,255,255,.06);border-radius:4px;margin-bottom:10px;width:80%"></div><div style="height:10px;background:rgba(255,255,255,.04);border-radius:4px;margin-top:20px;width:30%"></div></div></div>
+      <div class="a-card skeleton-card" style="animation:skeleton-pulse 1.5s ease-in-out infinite .45s"><div style="height:200px;background:rgba(255,255,255,.04);border-radius:8px 8px 0 0"></div><div style="padding:28px"><div style="height:10px;background:rgba(255,255,255,.04);border-radius:4px;margin-bottom:16px;width:40%"></div><div style="height:14px;background:rgba(255,255,255,.06);border-radius:4px;margin-bottom:10px"></div><div style="height:14px;background:rgba(255,255,255,.06);border-radius:4px;margin-bottom:10px;width:80%"></div><div style="height:10px;background:rgba(255,255,255,.04);border-radius:4px;margin-top:20px;width:30%"></div></div></div>
+      <div class="a-card skeleton-card" style="animation:skeleton-pulse 1.5s ease-in-out infinite .6s"><div style="height:200px;background:rgba(255,255,255,.04);border-radius:8px 8px 0 0"></div><div style="padding:28px"><div style="height:10px;background:rgba(255,255,255,.04);border-radius:4px;margin-bottom:16px;width:40%"></div><div style="height:14px;background:rgba(255,255,255,.06);border-radius:4px;margin-bottom:10px"></div><div style="height:14px;background:rgba(255,255,255,.06);border-radius:4px;margin-bottom:10px;width:80%"></div><div style="height:10px;background:rgba(255,255,255,.04);border-radius:4px;margin-top:20px;width:30%"></div></div></div>
+      <div class="a-card skeleton-card" style="animation:skeleton-pulse 1.5s ease-in-out infinite .75s"><div style="height:200px;background:rgba(255,255,255,.04);border-radius:8px 8px 0 0"></div><div style="padding:28px"><div style="height:10px;background:rgba(255,255,255,.04);border-radius:4px;margin-bottom:16px;width:40%"></div><div style="height:14px;background:rgba(255,255,255,.06);border-radius:4px;margin-bottom:10px"></div><div style="height:14px;background:rgba(255,255,255,.06);border-radius:4px;margin-bottom:10px;width:80%"></div><div style="height:10px;background:rgba(255,255,255,.04);border-radius:4px;margin-top:20px;width:30%"></div></div></div>
+    </div>
+
+    <div id="posts-pagination" class="reveal" style="display:none;justify-content:center;margin-top:56px">
+      <a href="https://mettamotion.com/blog" class="btn-o">View All Posts →</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════
+     ABOUT
+════════════════════════════════ -->
+<section style="background:#080d18;padding:100px 0;position:relative;overflow:hidden">
+  <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(ellipse 55% 60% at 85% 50%,rgba(26,111,255,.08) 0%,transparent 55%)"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center">
+
+      <!-- Left -->
+      <div class="reveal">
+        <div class="pill" style="margin-bottom:14px">About Mettamotion</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;letter-spacing:-.03em;line-height:1.12;margin-bottom:20px">
+          We Help You Work<br>Smarter with AI.
         </h2>
-        <p class="text-base leading-[1.75] max-w-lg mx-auto" style="color:#8a9bbf">
-          From no-code tools to custom AI pipelines — knowledge, resources, and community to build what matters.
+        <p style="font-size:.95rem;color:#8a9bbf;line-height:1.8;margin-bottom:16px">
+          Mettamotion is a digital publication and consulting practice dedicated to AI automation, SEO, and digital marketing. We write for builders, marketers, and founders who want to move fast without breaking things.
+        </p>
+        <p style="font-size:.95rem;color:#8a9bbf;line-height:1.8;margin-bottom:36px">
+          Every article is built around one question: <em style="color:#fff;font-style:normal">what actually works?</em> No fluff, no padding — just actionable strategies backed by real results.
+        </p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button onclick="document.getElementById('talk-modal').style.display='flex'" class="btn-glow">Let's Talk ✦</button>
+        </div>
+      </div>
+
+      <!-- Right — stats -->
+      <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="background:linear-gradient(135deg,rgba(26,111,255,.16),rgba(0,212,255,.08));border:1px solid rgba(26,111,255,.25);border-radius:16px;padding:32px 28px;grid-column:span 2;display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-family:'Space Mono',monospace;font-size:2.4rem;font-weight:700;line-height:1;margin-bottom:8px">180<span style="color:#00d4ff;font-size:1.4rem">+</span></div>
+            <div style="font-size:.8rem;color:#8a9bbf;letter-spacing:.04em">Articles Published</div>
+          </div>
+          <div style="font-size:2.5rem">✍️</div>
+        </div>
+        <div style="background:linear-gradient(145deg,#111d35,#0d1526);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:28px 24px">
+          <div style="font-family:'Space Mono',monospace;font-size:1.9rem;font-weight:700;line-height:1;margin-bottom:8px">12<span style="color:#00d4ff;font-size:1.1rem">K+</span></div>
+          <div style="font-size:.78rem;color:#8a9bbf">Monthly Readers</div>
+        </div>
+        <div style="background:linear-gradient(145deg,#111d35,#0d1526);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:28px 24px">
+          <div style="font-family:'Space Mono',monospace;font-size:1.9rem;font-weight:700;line-height:1;margin-bottom:8px">98<span style="color:#00d4ff;font-size:1.1rem">%</span></div>
+          <div style="font-size:.78rem;color:#8a9bbf">Reader Satisfaction</div>
+        </div>
+        <div style="background:linear-gradient(145deg,#111d35,#0d1526);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:28px 24px">
+          <div style="font-family:'Space Mono',monospace;font-size:1.9rem;font-weight:700;line-height:1;margin-bottom:8px">5<span style="color:#00d4ff;font-size:1.1rem">yr</span></div>
+          <div style="font-size:.78rem;color:#8a9bbf">In the Industry</div>
+        </div>
+        <div style="background:linear-gradient(145deg,#111d35,#0d1526);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:28px 24px">
+          <div style="font-family:'Space Mono',monospace;font-size:1.9rem;font-weight:700;line-height:1;margin-bottom:8px">40<span style="color:#00d4ff;font-size:1.1rem">+</span></div>
+          <div style="font-size:.78rem;color:#8a9bbf">Countries Reached</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════
+     NEWSLETTER / CONTACT
+════════════════════════════════ -->
+<section style="background:#0d1526;padding:100px 0">
+  <div class="max-w-7xl mx-auto px-6">
+    <div style="max-width:580px;margin:0 auto;text-align:center">
+
+      <!-- Newsletter -->
+      <div class="reveal">
+        <div class="pill" style="margin-bottom:14px">Stay Sharp</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:700;letter-spacing:-.025em;line-height:1.15;margin-bottom:16px">
+          Get the Best Articles<br>Delivered Weekly.
+        </h2>
+        <p style="font-size:.9rem;color:#8a9bbf;line-height:1.75;margin-bottom:32px">
+          No spam. No noise. Just the most useful AI automation and marketing insights — delivered every Tuesday.
+        </p>
+        <div id="mlb2-39184172" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-39184172">
+  <div class="ml-form-align-center">
+    <div class="ml-form-embedWrapper embedForm">
+      <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+        <div class="ml-form-embedContent" style="margin-bottom:16px">
+          <p style="color:#8a9bbf;font-family:'DM Sans',sans-serif;font-size:.9rem;margin:0">No spam. No noise. Just the most useful AI automation and marketing insights — every Tuesday.</p>
+        </div>
+        <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2232199/forms/183361895043958194/subscribe" data-code="" method="post" target="_blank">
+          <div class="ml-form-formContent">
+            <div class="ml-form-fieldRow ml-last-item">
+              <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                <input aria-label="email" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="your@email.com" autocomplete="email" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:14px 18px;color:#fff;font-family:'DM Sans',sans-serif;font-size:.9rem;width:100%;outline:none;box-sizing:border-box;transition:border-color .2s,box-shadow .2s" onfocus="this.style.borderColor='#1a6fff';this.style.boxShadow='0 0 0 3px rgba(26,111,255,.15)'" onblur="this.style.borderColor='rgba(255,255,255,.1)';this.style.boxShadow='none'" />
+              </div>
+            </div>
+          </div>
+          <input type="hidden" name="ml-submit" value="1">
+          <div class="ml-form-embedSubmit" style="margin-top:12px">
+            <button type="submit" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 28px;border-radius:8px;background:#1a6fff;color:#fff;font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;width:100%;box-shadow:0 4px 20px rgba(26,111,255,.35);transition:background .2s,transform .15s" onmouseover="this.style.background='#4d97ff'" onmouseout="this.style.background='#1a6fff'">Subscribe →</button>
+            <button disabled="disabled" style="display:none" type="button">
+              <div class="ml-form-embedSubmitLoad"></div>
+              <span class="sr-only">Loading...</span>
+            </button>
+          </div>
+          <input type="hidden" name="anticsrf" value="true">
+        </form>
+      </div>
+      <div class="ml-form-successBody row-success" style="display:none;text-align:center;padding:20px 0">
+        <p style="font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:#00d4ff;margin:0">✓ You're in! Check your inbox.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>function ml_webform_success_39184172(){var $=ml_jQuery||jQuery;$('.ml-subscribe-form-39184172 .row-success').show();$('.ml-subscribe-form-39184172 .row-form').hide();}</script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v95037e5bac78f29ed026832ca21a7c7b" type="text/javascript"></script>
+<script>fetch("https://assets.mailerlite.com/jsonp/2232199/forms/183361895043958194/takel")</script>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════
+     FOOTER
+════════════════════════════════ -->
+<footer style="background:#080d18;border-top:1px solid rgba(255,255,255,.05);padding:56px 0 28px">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px">
+      <div>
+        <a href="/" style="display:flex;align-items:center;gap:12px;text-decoration:none;margin-bottom:16px">
+          <img src="brand_asset/LogoMakr-9nt01b.png" alt="Mettamotion" class="logo-img" style="height:28px;width:auto" />
+          <div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:700;color:#fff">METTAMOTION</div>
+            <div style="font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.16em;color:#3a4a6b;text-transform:uppercase">Build · Automate · Scale</div>
+          </div>
+        </a>
+        <p style="font-size:.83rem;color:#8a9bbf;line-height:1.75;max-width:240px">
+          AI automation, SEO, and digital marketing insights for builders who want results.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div>
+        <h4 style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#8a9bbf;margin-bottom:18px">Topics</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:11px">
+          <li><a href="#" style="font-size:.83rem;color:#8a9bbf;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">AI Automation</a></li>
+          <li><a href="#" style="font-size:.83rem;color:#8a9bbf;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">SEO Strategy</a></li>
+          <li><a href="#" style="font-size:.83rem;color:#8a9bbf;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">Digital Marketing</a></li>
+          <li><a href="#" style="font-size:.83rem;color:#8a9bbf;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">AI News</a></li>
+        </ul>
+      </div>
 
-        <!-- Card template -->
-        <div class="card p-9 reveal">
-          <span class="font-mono text-[0.6rem] tracking-widest absolute top-6 right-6" style="color:#3a4a6b">01</span>
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"
-               style="background:rgba(26,111,255,0.12);border:1px solid rgba(26,111,255,0.2)">⚡</div>
-          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Workflow Blueprints</h3>
-          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">180+ ready-to-deploy automation templates across n8n, Make, Zapier, and custom AI pipelines. Copy, adapt, launch.</p>
-        </div>
+      <div>
+        <h4 style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#8a9bbf;margin-bottom:18px">Company</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:11px">
+          <li><a href="#" style="font-size:.83rem;color:#8a9bbf;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">About</a></li>
+          <li><a href="#" style="font-size:.83rem;color:#8a9bbf;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">Blog</a></li>
+          <li><a href="#" style="font-size:.83rem;color:#8a9bbf;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">Contact</a></li>
+          <li><a href="#" style="font-size:.83rem;color:#8a9bbf;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">Free Audit</a></li>
+        </ul>
+      </div>
 
-        <div class="card p-9 reveal">
-          <span class="font-mono text-[0.6rem] tracking-widest absolute top-6 right-6" style="color:#3a4a6b">02</span>
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"
-               style="background:rgba(26,111,255,0.12);border:1px solid rgba(26,111,255,0.2)">🤖</div>
-          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">AI Agent Training</h3>
-          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Structured courses on building multi-agent systems with Claude, GPT, and open-source LLMs. Theory meets hands-on implementation.</p>
-        </div>
-
-        <div class="card p-9 reveal">
-          <span class="font-mono text-[0.6rem] tracking-widest absolute top-6 right-6" style="color:#3a4a6b">03</span>
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"
-               style="background:rgba(26,111,255,0.12);border:1px solid rgba(26,111,255,0.2)">🔗</div>
-          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Live Integrations</h3>
-          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Step-by-step guides for connecting your stack: CRMs, ERPs, databases, and 500+ APIs — no backend degree required.</p>
-        </div>
-
-        <div class="card p-9 reveal">
-          <span class="font-mono text-[0.6rem] tracking-widest absolute top-6 right-6" style="color:#3a4a6b">04</span>
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"
-               style="background:rgba(26,111,255,0.12);border:1px solid rgba(26,111,255,0.2)">📡</div>
-          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Weekly Expert Sessions</h3>
-          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Live calls with automation engineers, founders, and AI researchers. Bring your builds, get real feedback, leave with solutions.</p>
-        </div>
-
-        <div class="card p-9 reveal">
-          <span class="font-mono text-[0.6rem] tracking-widest absolute top-6 right-6" style="color:#3a4a6b">05</span>
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"
-               style="background:rgba(26,111,255,0.12);border:1px solid rgba(26,111,255,0.2)">🛡️</div>
-          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Private Community</h3>
-          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">A focused, high-signal space — no noise, no fluff. Share wins, debug together, and collaborate on projects that ship.</p>
-        </div>
-
-        <div class="card p-9 reveal">
-          <span class="font-mono text-[0.6rem] tracking-widest absolute top-6 right-6" style="color:#3a4a6b">06</span>
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"
-               style="background:rgba(26,111,255,0.12);border:1px solid rgba(26,111,255,0.2)">📊</div>
-          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">ROI Playbooks</h3>
-          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Real case studies breaking down exactly how members saved time, reduced cost, and scaled revenue using AI automation.</p>
-        </div>
-
+      <div>
+        <h4 style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#8a9bbf;margin-bottom:18px">Legal</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:11px">
+          <li><a href="#" style="font-size:.83rem;color:#8a9bbf;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">Privacy Policy</a></li>
+          <li><a href="#" style="font-size:.83rem;color:#8a9bbf;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">Terms of Service</a></li>
+          <li><a href="#" style="font-size:.83rem;color:#8a9bbf;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">Cookie Policy</a></li>
+        </ul>
       </div>
     </div>
-  </section>
 
-
-  <!-- ═══════════════════════════════════════════
-       HOW IT WORKS
-  ═══════════════════════════════════════════ -->
-  <section id="how" class="relative py-28 overflow-hidden" style="background:#0d1526">
-    <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(circle at 50% 50%,rgba(0,212,255,0.06) 0%,transparent 60%)"></div>
-
-    <div class="relative z-10 max-w-7xl mx-auto px-6">
-      <div class="text-center mb-20 reveal">
-        <div class="tag-pill mb-4">Process</div>
-        <h2 class="font-display font-extrabold mb-4" style="font-size:clamp(1.9rem,3.5vw,2.9rem);letter-spacing:-0.03em;line-height:1.12">
-          From Zero to Automated<br>in Four Steps
-        </h2>
-        <p class="text-base leading-[1.75] max-w-md mx-auto" style="color:#8a9bbf">
-          A clear path from joining to deploying your first intelligent automation.
-        </p>
-      </div>
-
-      <div class="relative steps-row grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0">
-        <!-- Step -->
-        <div class="flex flex-col items-center text-center px-5 reveal">
-          <div class="w-[72px] h-[72px] rounded-full flex items-center justify-center font-mono font-bold text-lg mb-7 relative z-10"
-               style="background:#111d35;border:1px solid rgba(26,111,255,0.3);color:#1a6fff;box-shadow:0 0 0 6px #0d1526">01</div>
-          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Join Free</h3>
-          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Create your account in 60 seconds. No credit card, no commitment. Instant access to the community vault.</p>
-        </div>
-        <div class="flex flex-col items-center text-center px-5 reveal">
-          <div class="w-[72px] h-[72px] rounded-full flex items-center justify-center font-mono font-bold text-lg mb-7 relative z-10"
-               style="background:#111d35;border:1px solid rgba(26,111,255,0.3);color:#1a6fff;box-shadow:0 0 0 6px #0d1526">02</div>
-          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Pick Your Path</h3>
-          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Select your focus: sales, operations, content, finance, or custom AI agents. Your roadmap is pre-built.</p>
-        </div>
-        <div class="flex flex-col items-center text-center px-5 reveal">
-          <div class="w-[72px] h-[72px] rounded-full flex items-center justify-center font-mono font-bold text-lg mb-7 relative z-10"
-               style="background:#111d35;border:1px solid rgba(26,111,255,0.3);color:#1a6fff;box-shadow:0 0 0 6px #0d1526">03</div>
-          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Build & Deploy</h3>
-          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Follow blueprints, attend live sessions, ship your first automation. Average 7 days to first live workflow.</p>
-        </div>
-        <div class="flex flex-col items-center text-center px-5 reveal">
-          <div class="w-[72px] h-[72px] rounded-full flex items-center justify-center font-mono font-bold text-lg mb-7 relative z-10"
-               style="background:#111d35;border:1px solid rgba(26,111,255,0.3);color:#1a6fff;box-shadow:0 0 0 6px #0d1526">04</div>
-          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Scale & Share</h3>
-          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Compound your results, share what you've built, and earn your place as a top contributor.</p>
-        </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid rgba(255,255,255,.05);flex-wrap:wrap;gap:16px">
+      <div style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:#3a4a6b">© 2026 Mettamotion. All rights reserved.</div>
+      <div style="display:flex;gap:10px">
+        <a href="#" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none;transition:border-color .2s" onmouseover="this.style.borderColor='rgba(26,111,255,.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,.08)'" title="X">𝕏</a>
+        <a href="#" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none;transition:border-color .2s" onmouseover="this.style.borderColor='rgba(26,111,255,.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,.08)'" title="Facebook">f</a>
+        <a href="#" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none;transition:border-color .2s" onmouseover="this.style.borderColor='rgba(26,111,255,.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,.08)'" title="LinkedIn">in</a>
+        <a href="#" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none;transition:border-color .2s" onmouseover="this.style.borderColor='rgba(26,111,255,.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,.08)'" title="Instagram">▲</a>
       </div>
     </div>
-  </section>
+
+  </div>
+</footer>
 
 
-  <!-- ═══════════════════════════════════════════
-       COMMUNITY
-  ═══════════════════════════════════════════ -->
-  <section id="community" class="relative py-28" style="background:#080d18">
-    <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(ellipse 50% 60% at 80% 50%,rgba(26,111,255,0.08) 0%,transparent 55%)"></div>
+<script>
+  // Sticky nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
 
-    <div class="relative z-10 max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+  // Glow card pointer tracking
+  document.addEventListener('pointermove', function(e){
+    const x  = e.clientX.toFixed(1);
+    const y  = e.clientY.toFixed(1);
+    const xp = ((e.clientX / window.innerWidth) * 60).toFixed(1); // drives hue shift
+    document.querySelectorAll('.a-card').forEach(function(card){
+      card.style.setProperty('--glow-x',  x);
+      card.style.setProperty('--glow-y',  y);
+      card.style.setProperty('--glow-xp', xp);
+    });
+  });
 
-        <!-- Left -->
-        <div class="reveal">
-          <div class="tag-pill mb-4">Community</div>
-          <h2 class="font-display font-extrabold mb-5" style="font-size:clamp(1.9rem,3vw,2.7rem);letter-spacing:-0.03em;line-height:1.12">
-            Built by Practitioners.<br>For Practitioners.
-          </h2>
-          <p class="text-base leading-[1.75] mb-10 max-w-md" style="color:#8a9bbf">
-            We're not a course platform. Not a Discord of lurkers. AI Automation Society is a working community — questions get answered, builds get shipped, members genuinely help each other grow.
-          </p>
-          <div class="flex flex-wrap gap-3">
-            <a href="#cta" class="btn-primary">Join the Community →</a>
-            <a href="#testimonials" class="btn-outline">Read Stories</a>
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)} });
+  }, {threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a =>
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+    })
+  );
+
+  // ── Fetch posts from WordPress REST API ──
+  const WP_API      = 'https://mettamotion.com/wp-json/wp/v2/posts?_embed&per_page=6&orderby=date&order=desc';
+  const WP_HOT_API    = 'https://mettamotion.com/wp-json/wp/v2/posts?_embed&per_page=1&orderby=comment_count&order=desc';
+  const WP_STICKY_API = 'https://mettamotion.com/wp-json/wp/v2/posts?_embed&per_page=1&sticky=true';
+  const grid   = document.getElementById('posts-grid');
+  const pgn    = document.getElementById('posts-pagination');
+
+  function readingTime(content) {
+    const words = content.replace(/<[^>]*>/g,'').split(/\s+/).length;
+    return Math.max(1, Math.round(words / 200)) + ' min read';
+  }
+
+  function formatDate(dateStr) {
+    return new Date(dateStr).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  }
+
+  function getCategoryName(post) {
+    try { return post._embedded['wp:term'][0][0].name; } catch(e) { return 'Article'; }
+  }
+
+  const FALLBACK_IMAGES = [
+    { keywords: ['val kilmer', 'film', 'movie', 'actor', 'cinema'],           img: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&q=80' },
+    { keywords: ['sora', 'text-to-video', 'openai shutdown'],                 img: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80' },
+    { keywords: ['melania', 'robot', 'humanoid', 'white house', 'figure 03'], img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80' },
+    { keywords: ['ai doc', 'documentary', 'father', 'peril', 'promise'],      img: 'https://images.unsplash.com/photo-1677442136019-21780ecad979?w=800&q=80' },
+    { keywords: ['crossword', 'copilot', 'microsoft', 'puzzle'],              img: 'https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=800&q=80' },
+    { keywords: ['lead generation', 'lead system', 'automated lead'],         img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80' },
+    { keywords: ['seo', 'search engine', 'future-proof seo'],                 img: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&q=80' },
+    { keywords: ['digital marketing career', 'career path', 'blueprint'],     img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80' },
+    { keywords: ['digital marketing strategy', 'future-proof digital'],       img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80' },
+    { keywords: ['digital marketing roadmap', 'high-roi', 'roi skills'],      img: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80' },
+    { keywords: ['remote work', 'work from home'],                             img: 'https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=800&q=80' },
+    { keywords: ['photography', 'camera'],                                     img: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80' },
+    { keywords: ['automation', 'workflow', 'automate'],                        img: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&q=80' },
+    { keywords: ['ai', 'artificial intelligence', 'machine learning'],         img: 'https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=800&q=80' },
+    { keywords: ['marketing', 'growth', 'brand'],                              img: 'https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&q=80' },
+  ];
+
+  function getFeaturedImage(post) {
+    try {
+      const src = post._embedded['wp:featuredmedia'][0].source_url;
+      if (src) return src;
+      throw new Error('no image');
+    } catch(e) {
+      const title = (post.title.rendered || '').toLowerCase();
+      for (const { keywords, img } of FALLBACK_IMAGES) {
+        if (keywords.some(k => title.includes(k))) return img;
+      }
+      return 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80';
+    }
+  }
+
+  function stripHtml(html) {
+    return html.replace(/<[^>]*>/g,'').replace(/&hellip;/g,'…').replace(/&amp;/g,'&').replace(/&#8217;/g,"'").trim();
+  }
+
+  function buildCard(post) {
+    const cat   = getCategoryName(post);
+    const img   = getFeaturedImage(post);
+    const date  = formatDate(post.date);
+    const rt    = readingTime(post.content.rendered);
+    const title = post.title.rendered;
+    const excpt = stripHtml(post.excerpt.rendered).slice(0,120) + '…';
+    const url   = `/blog/post/?slug=${encodeURIComponent(post.slug)}`;
+
+    return `
+    <div class="a-card" style="opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s,border-color .25s,box-shadow .25s">
+      <div class="a-card-img">
+        <img src="${img}" alt="${title}" loading="lazy" />
+        <span class="cat-badge">${cat}</span>
+      </div>
+      <div style="padding:28px 28px 32px;display:flex;flex-direction:column;flex:1">
+        <div style="display:flex;align-items:center;margin-bottom:14px;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:#8a9bbf">
+          ${date}<span class="rdot">${rt}</span>
+        </div>
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;line-height:1.35;letter-spacing:-.01em;margin-bottom:12px">
+          <a href="${url}" style="color:#fff;text-decoration:none;transition:color .2s"
+             onmouseover="this.style.color='#4d97ff'" onmouseout="this.style.color='#fff'">${title}</a>
+        </h3>
+        <p style="font-size:.84rem;color:#8a9bbf;line-height:1.7;margin-bottom:22px">${excpt}</p>
+        <a href="${url}" style="font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#1a6fff;text-decoration:none;transition:color .2s"
+           onmouseover="this.style.color='#00d4ff'" onmouseout="this.style.color='#1a6fff'">Read More →</a>
+      </div>
+    </div>`;
+  }
+
+  // ── Featured: sticky post first → fallback to most commented ──
+  function renderFeatured(p, isSticky) {
+    const img    = getFeaturedImage(p);
+    const cat    = getCategoryName(p);
+    const rt     = readingTime(p.content.rendered);
+    const date   = formatDate(p.date);
+    const excpt  = stripHtml(p.excerpt.rendered).slice(0, 160) + '…';
+    const comments = p.comment_count > 0 ? `<span style="color:#00d4ff">${p.comment_count} comments</span> <span style="color:#3a4a6b">·</span> ` : '';
+    const badge  = isSticky
+      ? `<div style="position:absolute;top:20px;right:20px;z-index:2;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:100px;background:rgba(26,111,255,.2);border:1px solid rgba(26,111,255,.45);font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#4d97ff;backdrop-filter:blur(8px)">📌 Editor's Pick</div>`
+      : `<div style="position:absolute;top:20px;right:20px;z-index:2;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:100px;background:rgba(255,60,60,.18);border:1px solid rgba(255,80,80,.35);font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#ff6b6b;backdrop-filter:blur(8px)">🔥 Trending</div>`;
+
+    document.getElementById('featured-card').innerHTML = `
+      <div class="a-card-feat" style="display:grid;grid-template-columns:1fr 1fr;min-height:420px">
+        <div class="a-card-feat-img" style="height:100%;min-height:340px">
+          <img src="${img}" alt="${p.title.rendered}" />
+          <div style="position:absolute;top:20px;left:20px;z-index:2" class="cat-badge">${cat}</div>
+          ${badge}
+        </div>
+        <div style="padding:52px 48px;display:flex;flex-direction:column;justify-content:center">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:20px;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#8a9bbf">
+            ${comments}${date} <span style="color:#3a4a6b">·</span> ${rt}
           </div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:700;letter-spacing:-.025em;line-height:1.15;margin-bottom:16px">
+            ${p.title.rendered}
+          </h3>
+          <p style="font-size:.92rem;color:#8a9bbf;line-height:1.75;margin-bottom:32px">${excpt}</p>
+          <a href="/blog/post/?slug=${encodeURIComponent(p.slug)}" class="btn-p" style="width:fit-content">Read Article →</a>
         </div>
+      </div>`;
+  }
 
-        <!-- Right — stat grid -->
-        <div class="grid grid-cols-2 gap-4 reveal">
-          <!-- Featured wide card -->
-          <div class="col-span-2 card flex items-center gap-6 px-8 py-6"
-               style="background:linear-gradient(135deg,rgba(26,111,255,0.16),rgba(0,212,255,0.08));border-color:rgba(26,111,255,0.25)">
-            <div>
-              <div class="font-mono font-bold leading-none mb-2" style="font-size:2.4rem">2.4<span style="color:#00d4ff;font-size:1.4rem">K</span></div>
-              <div class="text-xs tracking-wide" style="color:#8a9bbf">Active Practitioners</div>
+  async function loadFeatured() {
+    const el = document.getElementById('featured-card');
+
+    function showFallback() {
+      // Show the most recent known post as preview (updates automatically when live)
+      el.innerHTML = `
+        <div class="a-card-feat" style="display:grid;grid-template-columns:1fr 1fr;min-height:420px">
+          <div class="a-card-feat-img" style="height:100%;min-height:340px">
+            <img src="https://placehold.co/720x480/0d1526/1a6fff?text=Mettamotion" alt="Featured post" />
+            <div style="position:absolute;top:20px;left:20px;z-index:2" class="cat-badge">AI</div>
+            <div style="position:absolute;top:20px;right:20px;z-index:2;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:100px;background:rgba(255,60,60,.18);border:1px solid rgba(255,80,80,.35);font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#ff6b6b;backdrop-filter:blur(8px)">🔥 Trending</div>
+          </div>
+          <div style="padding:52px 48px;display:flex;flex-direction:column;justify-content:center">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:20px;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#8a9bbf">
+              Mar 28, 2026 <span style="color:#3a4a6b">·</span> 7 min read
             </div>
-            <div class="text-4xl ml-auto">🌐</div>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:700;letter-spacing:-.025em;line-height:1.15;margin-bottom:16px">
+              Melania Trump AI Robot Makes History at White House Education Summit
+            </h3>
+            <p style="font-size:.92rem;color:#8a9bbf;line-height:1.75;margin-bottom:32px">
+              AI Robot Figure G3 joins Melania Trump at the White House, marking a pivotal moment in the public role of humanoid AI in education and policy.
+            </p>
+            <a href="https://mettamotion.com/melania-trump-ai-robot-history/" class="btn-p" style="width:fit-content">Read Article →</a>
           </div>
+        </div>`;
+    }
 
-          <div class="card px-6 py-7">
-            <div class="font-mono font-bold leading-none mb-2" style="font-size:1.9rem">180<span style="color:#00d4ff;font-size:1.1rem">+</span></div>
-            <div class="text-xs tracking-wide" style="color:#8a9bbf">Blueprints in Vault</div>
-          </div>
-          <div class="card px-6 py-7">
-            <div class="font-mono font-bold leading-none mb-2" style="font-size:1.9rem">47<span style="color:#00d4ff;font-size:1.1rem">+</span></div>
-            <div class="text-xs tracking-wide" style="color:#8a9bbf">Countries</div>
-          </div>
-          <div class="card px-6 py-7">
-            <div class="font-mono font-bold leading-none mb-2" style="font-size:1.9rem">3.8<span style="color:#00d4ff;font-size:1.1rem">K</span></div>
-            <div class="text-xs tracking-wide" style="color:#8a9bbf">Workflows Deployed</div>
-          </div>
-          <div class="card px-6 py-7">
-            <div class="font-mono font-bold leading-none mb-2" style="font-size:1.9rem">12<span style="color:#00d4ff;font-size:1.1rem">h</span></div>
-            <div class="text-xs tracking-wide" style="color:#8a9bbf">Avg Saved / Week</div>
-          </div>
-        </div>
+    try {
+      // 1. Try sticky post first
+      const sRes = await fetch(WP_STICKY_API);
+      const sPosts = await sRes.json();
+      if (Array.isArray(sPosts) && sPosts.length) {
+        return renderFeatured(sPosts[0], true);
+      }
 
-      </div>
-    </div>
-  </section>
+      // 2. Fallback: most commented
+      const hRes = await fetch(WP_HOT_API);
+      const hPosts = await hRes.json();
+      if (Array.isArray(hPosts) && hPosts.length) {
+        return renderFeatured(hPosts[0], false);
+      }
 
+      // 3. Last resort: just latest post
+      const lRes = await fetch('https://mettamotion.com/wp-json/wp/v2/posts?_embed&per_page=1');
+      const lPosts = await lRes.json();
+      if (Array.isArray(lPosts) && lPosts.length) {
+        return renderFeatured(lPosts[0], false);
+      }
 
-  <!-- ═══════════════════════════════════════════
-       TESTIMONIALS
-  ═══════════════════════════════════════════ -->
-  <section id="testimonials" class="relative py-28" style="background:#0d1526">
-    <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(ellipse 55% 40% at 50% 100%,rgba(26,111,255,0.07) 0%,transparent 55%)"></div>
+      showFallback();
+    } catch(e) {
+      showFallback();
+    }
+  }
 
-    <div class="relative z-10 max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16 reveal">
-        <div class="tag-pill mb-4">Members</div>
-        <h2 class="font-display font-extrabold mb-4" style="font-size:clamp(1.9rem,3.5vw,2.9rem);letter-spacing:-0.03em">What Members Are Building</h2>
-        <p class="text-base leading-[1.75] max-w-md mx-auto" style="color:#8a9bbf">Real results from real practitioners inside the AI Automation Society.</p>
-      </div>
+  loadFeatured();
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-        <div class="card p-8 reveal">
-          <p class="text-sm leading-[1.8] mb-7 italic" style="color:#8a9bbf">
-            <span style="color:#1a6fff;font-size:1.3rem;font-style:normal">"</span>
-            Automated my entire lead qualification pipeline in one week using the blueprints here. Saved 15 hours a week and closed 3 extra deals last month alone.
-          </p>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center font-mono text-sm font-bold flex-shrink-0"
-                 style="background:linear-gradient(135deg,#1a6fff,#00d4ff)">JM</div>
-            <div>
-              <div class="font-mono text-xs font-semibold">James M.</div>
-              <div class="text-xs mt-0.5" style="color:#8a9bbf">Sales Director, SaaS Startup</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card p-8 reveal">
-          <p class="text-sm leading-[1.8] mb-7 italic" style="color:#8a9bbf">
-            <span style="color:#1a6fff;font-size:1.3rem;font-style:normal">"</span>
-            The live sessions alone are worth it. Got feedback on my AI agent build from someone who's deployed it at scale. That kind of access doesn't exist anywhere else.
-          </p>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center font-mono text-sm font-bold flex-shrink-0"
-                 style="background:linear-gradient(135deg,#1a6fff,#00d4ff)">SK</div>
-            <div>
-              <div class="font-mono text-xs font-semibold">Sofia K.</div>
-              <div class="text-xs mt-0.5" style="color:#8a9bbf">Operations Lead, Agency</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card p-8 reveal">
-          <p class="text-sm leading-[1.8] mb-7 italic" style="color:#8a9bbf">
-            <span style="color:#1a6fff;font-size:1.3rem;font-style:normal">"</span>
-            Came in knowing nothing about n8n. Three weeks later I had a full client reporting automation running. The walkthroughs are genuinely excellent.
-          </p>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center font-mono text-sm font-bold flex-shrink-0"
-                 style="background:linear-gradient(135deg,#1a6fff,#00d4ff)">RT</div>
-            <div>
-              <div class="font-mono text-xs font-semibold">Raj T.</div>
-              <div class="text-xs mt-0.5" style="color:#8a9bbf">Freelance Consultant</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════
-       CTA BANNER
-  ═══════════════════════════════════════════ -->
-  <section id="cta" class="relative py-20" style="background:#080d18">
-    <div class="max-w-7xl mx-auto px-6 reveal">
-      <div class="relative rounded-3xl overflow-hidden px-10 py-20 text-center"
-           style="background:linear-gradient(135deg,rgba(26,111,255,0.16) 0%,rgba(0,212,255,0.07) 100%);border:1px solid rgba(26,111,255,0.25)">
-
-        <!-- Inner glow -->
-        <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(circle at 50% 50%,rgba(26,111,255,0.18) 0%,transparent 60%)"></div>
-
-        <div class="relative z-10">
-          <div class="tag-pill justify-center mb-5">Get Started Today</div>
-          <h2 class="font-display font-extrabold mb-4" style="font-size:clamp(1.9rem,3.5vw,3rem);letter-spacing:-0.03em">
-            Ready to Automate<br>Your World?
-          </h2>
-          <p class="text-base leading-[1.75] mb-10 max-w-md mx-auto" style="color:#8a9bbf">
-            Join 2,400+ practitioners already inside. Free to start. No credit card required.
-          </p>
-          <div class="flex justify-center flex-wrap gap-4">
-            <a href="#" class="btn-primary" style="padding:16px 44px;font-size:0.85rem">Create Free Account →</a>
-            <a href="#what" class="btn-outline" style="padding:15px 40px;font-size:0.85rem">Learn More</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════
-       FOOTER
-  ═══════════════════════════════════════════ -->
-  <footer class="relative py-16 border-t" style="background:#0d1526;border-color:rgba(255,255,255,0.05)">
-    <div class="max-w-7xl mx-auto px-6">
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
-        <!-- Brand -->
-        <div class="lg:col-span-1">
-          <a href="#" class="flex items-center gap-3 group mb-4">
-            <img src="brand_asset/LogoMakr-9nt01b.png" alt="AIS" class="logo-img transition-transform duration-200 group-hover:scale-105" style="height:30px;width:auto" />
-            <span class="font-mono text-sm font-bold leading-tight">AI Automation<br><span style="color:#00d4ff">Society</span></span>
-          </a>
-          <p class="text-sm leading-[1.75]" style="color:#8a9bbf;max-width:240px">The premier community for AI automation practitioners — building smarter systems, together.</p>
-        </div>
-
-        <div>
-          <h4 class="font-mono text-[0.68rem] tracking-widest uppercase mb-5" style="color:#8a9bbf">Resources</h4>
-          <ul class="space-y-3">
-            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded" style="color:#8a9bbf">Blueprint Vault</a></li>
-            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Course Library</a></li>
-            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Case Studies</a></li>
-            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Tools Directory</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="font-mono text-[0.68rem] tracking-widest uppercase mb-5" style="color:#8a9bbf">Community</h4>
-          <ul class="space-y-3">
-            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Join Free</a></li>
-            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Live Sessions</a></li>
-            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Member Stories</a></li>
-            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Contribute</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="font-mono text-[0.68rem] tracking-widest uppercase mb-5" style="color:#8a9bbf">Company</h4>
-          <ul class="space-y-3">
-            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">About</a></li>
-            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Blog</a></li>
-            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Privacy Policy</a></li>
-            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Terms of Service</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Bottom bar -->
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-5 pt-8 border-t" style="border-color:rgba(255,255,255,0.05)">
-        <div class="font-mono text-[0.68rem] tracking-widest" style="color:#3a4a6b">© 2026 AI Automation Society. All rights reserved.</div>
-        <div class="flex gap-3">
-          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-sm border transition-colors duration-200 hover:border-brand focus-visible:outline focus-visible:outline-2"
-             style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.08)" title="X / Twitter">𝕏</a>
-          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-sm border transition-colors duration-200 hover:border-brand"
-             style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.08)" title="LinkedIn">in</a>
-          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-sm border transition-colors duration-200 hover:border-brand"
-             style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.08)" title="YouTube">▶</a>
-          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-sm border transition-colors duration-200 hover:border-brand"
-             style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.08)" title="Discord">💬</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-
-  <script>
-    // ── Sticky nav
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
-    }, { passive: true });
-
-    // ── Scroll-triggered reveal
-    const revealObs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-
-    // ── Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const t = document.querySelector(a.getAttribute('href'));
-        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  fetch(WP_API)
+    .then(r => r.json())
+    .then(posts => {
+      grid.innerHTML = posts.map(buildCard).join('');
+      pgn.style.display = 'flex';
+      // Stagger fade-in
+      grid.querySelectorAll('.a-card').forEach((card, i) => {
+        setTimeout(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, i * 80);
       });
+    })
+    .catch(() => {
+      // Fallback message if API unreachable (e.g. localhost preview)
+      grid.innerHTML = `
+        <div style="grid-column:span 3;text-align:center;padding:60px 20px">
+          <div style="font-size:2rem;margin-bottom:16px">📡</div>
+          <p style="font-family:'Space Mono',monospace;font-size:.8rem;color:#8a9bbf;letter-spacing:.08em">
+            Posts will appear here once deployed to mettamotion.com
+          </p>
+          <a href="https://mettamotion.com/blog" class="btn-o" style="margin-top:24px;display:inline-flex">View Blog →</a>
+        </div>`;
     });
 
-    // ── Float animation (CSS keyframes fallback via JS)
-    const heroLogo = document.querySelector('.hero-logo-img');
-    if (heroLogo) {
-      let t = 0;
-      (function loop() {
-        t += 0.016;
-        const y = Math.sin(t * (Math.PI / 2)) * 12;
-        const s = 1 + Math.sin(t * (Math.PI / 2)) * 0.03;
-        heroLogo.style.transform = `translateY(${y}px) scale(${s})`;
-        requestAnimationFrame(loop);
-      })();
+  // Newsletter form AJAX
+  const nlForm = document.getElementById('nl-form');
+  if(nlForm){
+    nlForm.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const btn = nlForm.querySelector('button');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      try {
+        const res = await fetch(nlForm.action, {method:'POST',body:new FormData(nlForm),headers:{Accept:'application/json'}});
+        if(res.ok){ document.getElementById('nl-msg').style.display='block'; nlForm.reset(); }
+        else{ btn.textContent = 'Try again'; btn.disabled = false; }
+      } catch(err){ btn.textContent = 'Try again'; btn.disabled = false; }
+    });
+  }
+
+  // Talk form AJAX
+  const talkForm = document.getElementById('talk-form');
+  if(talkForm){
+    talkForm.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const btn = talkForm.querySelector('.talk-submit');
+      btn.textContent = 'Sending…'; btn.disabled = true;
+      try {
+        const res = await fetch(talkForm.action, {method:'POST',body:new FormData(talkForm),headers:{Accept:'application/json'}});
+        if(res.ok){
+          talkForm.innerHTML = '<div style="text-align:center;padding:24px 0"><div style="font-size:2.5rem;margin-bottom:16px">✅</div><p style="font-family:\'Space Grotesk\',sans-serif;font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:8px">Message sent!</p><p style="color:#8a9bbf;font-size:.88rem">We\'ll get back to you shortly.</p></div>';
+        } else { btn.textContent = 'Try again'; btn.disabled = false; }
+      } catch(err){ btn.textContent = 'Try again'; btn.disabled = false; }
+    });
+  }
+
+  // ── Pulse Beams Animation ──
+  (function(){
+    const configs = [
+      {duration:6.0, delay:0.0},
+      {duration:7.0, delay:2.5},
+      {duration:8.0, delay:4.5},
+    ];
+
+    function animateBeam(pathId, gradId, duration, delay){
+      const path = document.getElementById(pathId);
+      const grad = document.getElementById(gradId);
+      if(!path || !grad) return;
+      const len = path.getTotalLength();
+      const seg = 0.2;
+      const t0  = performance.now() + delay * 1000;
+
+      function tick(now){
+        const t = ((now - t0) % (duration * 1000)) / (duration * 1000);
+        if(t < 0){ requestAnimationFrame(tick); return; }
+        const head = path.getPointAtLength(Math.min(t, 1) * len);
+        const tail = path.getPointAtLength(Math.max(0, t - seg) * len);
+        grad.setAttribute('x1', tail.x);
+        grad.setAttribute('y1', tail.y);
+        grad.setAttribute('x2', head.x);
+        grad.setAttribute('y2', head.y);
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
     }
 
-    // ── Glow pulse (CSS keyframes fallback)
-    const glowEl = document.querySelector('.glow-bg');
-    if (glowEl) {
-      let g = 0;
-      (function loop() {
-        g += 0.012;
-        const sc = 1 + Math.sin(g) * 0.18;
-        const op = 0.7 + Math.sin(g) * 0.3;
-        if (glowEl.firstElementChild) {
-          glowEl.firstElementChild.style.transform = `scale(${sc})`;
-          glowEl.firstElementChild.style.opacity = op;
-        }
-        requestAnimationFrame(loop);
-      })();
-    }
-  </script>
+    window.addEventListener('load', function(){
+      for(let i = 0; i < 3; i++){
+        const c = configs[i];
+        animateBeam('beam-path-'+i, 'beam-grad-'+i, c.duration, c.delay);
+      }
+    });
+  })();
+</script>
+
+<!-- ── Let's Talk Modal ── -->
+<div id="talk-modal" onclick="if(event.target===this)this.style.display='none'">
+  <div class="modal-box">
+    <button onclick="document.getElementById('talk-modal').style.display='none'"
+      style="position:absolute;top:18px;right:20px;background:none;border:none;color:#8a9bbf;font-size:1.4rem;cursor:pointer;line-height:1">✕</button>
+
+    <div class="pill" style="margin-bottom:12px">Get in Touch</div>
+    <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;letter-spacing:-.02em;margin-bottom:20px">Let's Talk</h3>
+    <div style="width:100%;height:500px;" data-fillout-id="xfWFHvCqZYus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div>
+    <script src="https://server.fillout.com/embed/v1/"></script>
+  </div>
+</div>
 </body>
 </html>

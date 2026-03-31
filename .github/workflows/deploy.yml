@@ -31,3 +31,6 @@ jobs:
             **/package.json
             **/package-lock.json
             **/*.md
+            **/.htaccess
+            **/wp-config.php
+            **/homepage.html
