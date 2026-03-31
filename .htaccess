@@ -1,13 +1,22 @@
-# Serve static HTML before WordPress PHP
 DirectoryIndex index.html index.php
 
-# BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
+
+# Serve our static homepage at root
+RewriteRule ^$ index.html [L]
+
+# Pass WordPress API, admin, login, and wp files through PHP
+RewriteRule ^wp-admin - [L]
+RewriteRule ^wp-login\.php - [L]
+RewriteRule ^wp-json - [L]
+RewriteRule ^wp-content - [L]
+RewriteRule ^wp-includes - [L]
+
+# Standard WordPress fallback for everything else
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
 </IfModule>
-# END WordPress
