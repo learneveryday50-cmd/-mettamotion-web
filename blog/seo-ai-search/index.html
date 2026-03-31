@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEO in the Age of AI Search: What Still Works and What's Dead — Mettamotion Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { navy:{DEFAULT:'#080d18',2:'#0d1526',3:'#111d35',4:'#182440'}, brand:{DEFAULT:'#1a6fff',dim:'#1256cc',glow:'#4d97ff'}, teal:{DEFAULT:'#00d4ff',dim:'#00a8cc'}, smoke:{DEFAULT:'#8a9bbf',dim:'#3a4a6b'} },
+        fontFamily: { display:['Space Grotesk','sans-serif'], body:['DM Sans','sans-serif'], mono:['Space Mono','monospace'] }
+      }}
+    }
+  </script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:#080d18;color:#fff;font-family:'DM Sans',sans-serif;overflow-x:hidden}
+    body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:128px 128px;opacity:0.025}
+    #nav{transition:background .3s,box-shadow .3s}
+    #nav.scrolled{background:rgba(8,13,24,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(255,255,255,.05)}
+    .logo-img{filter:brightness(0) invert(1) drop-shadow(0 0 6px rgba(0,212,255,.45));transition:transform .2s}
+    .logo-img:hover{transform:scale(1.06)}
+    .btn-p{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:8px;background:#1a6fff;color:#fff;font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;box-shadow:0 4px 20px rgba(26,111,255,.35);transition:background .2s,transform .15s}
+    .btn-p:hover{background:#4d97ff;transform:translateY(-2px)}
+    .cat-badge{display:inline-block;padding:5px 11px;border-radius:100px;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase}
+    .cat-ai{background:rgba(26,111,255,.22);border:1px solid rgba(26,111,255,.4);color:#4d97ff}
+    .cat-marketing{background:rgba(0,212,255,.15);border:1px solid rgba(0,212,255,.35);color:#00d4ff}
+    .cat-automation{background:rgba(138,71,255,.2);border:1px solid rgba(138,71,255,.4);color:#b97fff}
+    .prose h2{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;margin:2.2rem 0 .9rem;color:#fff}
+    .prose h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin:1.8rem 0 .7rem;color:#fff}
+    .prose p{color:#8a9bbf;line-height:1.8;margin-bottom:1.2rem;font-size:1rem}
+    .prose ul{color:#8a9bbf;line-height:1.8;margin-bottom:1.2rem;padding-left:1.4rem}
+    .prose ul li{margin-bottom:.5rem}
+    .prose strong{color:#fff;font-weight:600}
+    .prose blockquote{border-left:3px solid #1a6fff;padding:12px 20px;margin:1.8rem 0;background:rgba(26,111,255,.06);border-radius:0 8px 8px 0}
+    .prose blockquote p{color:#d0d8f0;margin:0}
+    .back-link{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#8a9bbf;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
+    .back-link:hover{color:#00d4ff}
+  </style>
+</head>
+<body class="relative">
+
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 py-5">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between gap-6">
+    <a href="/homepage.html" class="flex items-center">
+      <img src="/brand_asset/LogoMakr-9nt01b.png" alt="Mettamotion" class="logo-img" style="height:42px;width:auto" />
+    </a>
+    <ul class="hidden md:flex items-center gap-10" style="list-style:none">
+      <li><a href="/blog" style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;color:#00d4ff;text-decoration:none">Blog</a></li>
+      <li><a href="/contact" style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;color:#fff;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#00d4ff'" onmouseout="this.style.color='#fff'">Contact</a></li>
+    </ul>
+    <a href="/free-audit" class="btn-p">Free Audit →</a>
+  </div>
+</nav>
+
+<main class="relative z-10 max-w-3xl mx-auto px-6 pt-36 pb-28">
+  <a href="/blog" class="back-link mb-8 block">← Back to Blog</a>
+  <span class="cat-badge cat-marketing mb-5 inline-block">Marketing</span>
+  <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:20px">SEO in the Age of AI Search: What Still Works and What's Dead</h1>
+  <p style="color:#3a4a6b;font-family:'Space Mono',monospace;font-size:.78rem;margin-bottom:40px">Mar 14, 2026 &nbsp;·&nbsp; 5 min read</p>
+  <div class="rounded-2xl overflow-hidden mb-12" style="height:380px">
+    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80" alt="SEO and digital marketing analytics" style="width:100%;height:100%;object-fit:cover;filter:brightness(.85)" />
+  </div>
+  <div class="prose">
+
+    <p>Search traffic patterns shifted dramatically when AI-generated answers became the default response for informational queries. Google's AI Overviews, Perplexity's citation model, and ChatGPT search have collectively eaten a significant portion of the clicks that used to flow to content sites. If you have not updated your SEO strategy to account for this, you are probably seeing it in your analytics already. Here is an honest look at what still works, what has been rendered obsolete, and where the actual opportunity is now.</p>
+
+    <h2>What Is Genuinely Dead</h2>
+    <p>Some SEO tactics are not just declining — they are effectively useless in an AI-search environment. Continuing to invest in them is not just a waste; it distracts you from what actually works:</p>
+    <ul>
+      <li><strong>Keyword-density optimization:</strong> Writing content to hit a target keyword percentage was already a bad practice; it is now actively harmful. AI search systems are semantic. They evaluate whether your content thoroughly covers a topic, not whether you used a phrase seventeen times.</li>
+      <li><strong>Thin informational content:</strong> Any query where the answer can be summarized in a paragraph will get absorbed into an AI Overview or cited response. "What is compound interest," "How many ounces in a cup," "Best time to post on Instagram" — these queries are simply not worth chasing for traffic anymore. The user gets their answer without clicking.</li>
+      <li><strong>Exact-match anchor text manipulation:</strong> Link-building schemes built around keyword-matched anchor text have been penalized for years, but they still circulate as advice. AI search puts even less weight on raw link counts and more on entity authority and citation patterns from trusted sources.</li>
+      <li><strong>Meta keyword tags:</strong> These were already ignored. If you are still filling them in, stop — it is just noise in your codebase.</li>
+    </ul>
+
+    <h2>What Still Works (and Why)</h2>
+    <p>The good news is that the fundamentals of good SEO overlap heavily with what AI search systems value. If you were already doing real content marketing, you are in a better position than you might think:</p>
+    <ul>
+      <li><strong>Original research and proprietary data:</strong> AI systems cannot synthesize data that does not exist on the web. If you publish original survey results, benchmark reports, or unique datasets, you become a source that gets cited — in both traditional search results and AI responses. This is the highest-value content investment available right now.</li>
+      <li><strong>Expert authorship with verifiable credentials:</strong> Google's EEAT (Experience, Expertise, Authoritativeness, Trustworthiness) framework has become the lens through which content quality is assessed. Content attributed to identifiable experts with genuine credentials and a visible online presence performs significantly better than anonymous posts.</li>
+      <li><strong>Long-tail transactional and comparison queries:</strong> "Best CRM for a 10-person sales team under $200/month" is still a click-bearing query because the answer requires judgment and comparison that AI summaries struggle to resolve definitively. High commercial intent queries with specificity are where organic traffic still converts.</li>
+      <li><strong>Technical SEO fundamentals:</strong> Site speed, Core Web Vitals, crawlability, structured data, and mobile performance still matter. These are table stakes, not differentiators, but neglecting them will cost you regardless of content quality.</li>
+    </ul>
+
+    <blockquote>
+      <p>"The content that wins in AI search is not the content that ranks — it is the content that gets cited. Getting cited requires being the most specific, most credible, and most original source on a topic. That has always been good journalism. Now it is also good SEO."</p>
+    </blockquote>
+
+    <h2>The New Metric: Cited Visibility</h2>
+    <p>Traditional SEO measured rankings and clicks. The emerging metric that matters is <strong>cited visibility</strong> — how often your content is surfaced by AI systems as a source, whether or not the user clicks through to your site. Perplexity, ChatGPT, and AI Overviews all attribute sources. Being one of those sources builds brand authority even when no click occurs, and it directly correlates with brand searches, which are among the highest-converting traffic types.</p>
+    <p>To track this, start monitoring your brand name in AI responses. Tools like Brandwatch and emerging AI visibility trackers now let you see how often a given domain is cited in AI search answers for target queries. Treat this as a separate KPI alongside traditional organic traffic.</p>
+
+    <h2>Structured Data Is More Important Than Ever</h2>
+    <p>Schema markup was always a nice-to-have; it is now closer to essential for AI-era SEO. AI systems use structured data to extract clean, reliable information about your content — pricing, authorship, review scores, FAQ answers, how-to steps. Pages with comprehensive schema are more likely to surface in AI-generated responses and rich result formats. Audit your schema implementation, especially on product pages, author pages, and content that answers specific questions. If your CMS cannot generate structured data automatically, this is worth custom development time.</p>
+
+    <h2>The Opportunity Nobody Is Talking About</h2>
+    <p>While most businesses are mourning lost informational traffic, a significant opportunity has opened in <strong>community and platform SEO</strong>. Reddit, Quora, LinkedIn, YouTube, and niche forums are receiving dramatically more organic visibility as Google surfaces community-based content to offset AI-generated answers. These platforms are inherently human-voice, which is what search engines are now actively trying to elevate.</p>
+    <p>Building a genuine presence on one or two of these platforms — not scraped, not cross-posted AI content, but actual participation — is currently one of the highest-ROI distribution investments available. The brands showing up in Reddit threads and LinkedIn posts are capturing the human-validation layer of the search experience that AI answers cannot replicate.</p>
+
+  </div>
+  <div class="mt-16 pt-10" style="border-top:1px solid rgba(255,255,255,.06)">
+    <p style="font-family:'Space Mono',monospace;font-size:.72rem;color:#3a4a6b;letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px">Ready to automate?</p>
+    <a href="/homepage.html" class="btn-p">Get Your Free Audit →</a>
+  </div>
+</main>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+</script>
+</body>
+</html>

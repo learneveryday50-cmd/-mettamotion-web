@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Automation Society</title>
+
+  <!-- Fonts: Space Grotesk (display) + DM Sans (body) + Space Mono (labels) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:    { DEFAULT: '#080d18', 2: '#0d1526', 3: '#111d35', 4: '#182440' },
+            brand:   { DEFAULT: '#1a6fff', dim: '#1256cc', glow: '#4d97ff' },
+            teal:    { DEFAULT: '#00d4ff', dim: '#00a8cc' },
+            smoke:   { DEFAULT: '#8a9bbf', dim: '#3a4a6b' },
+          },
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            body:    ['DM Sans', 'sans-serif'],
+            mono:    ['Space Mono', 'monospace'],
+          },
+          letterSpacing: {
+            tight2: '-0.03em',
+            wide2:  '0.12em',
+          },
+          lineHeight: {
+            body: '1.75',
+          },
+          boxShadow: {
+            'brand-sm':  '0 0 12px rgba(26,111,255,0.25)',
+            'brand-md':  '0 4px 24px rgba(26,111,255,0.35), 0 0 0 1px rgba(26,111,255,0.15)',
+            'brand-lg':  '0 8px 40px rgba(26,111,255,0.4), 0 0 60px rgba(0,212,255,0.15)',
+            'teal-glow': '0 0 20px rgba(0,212,255,0.5), 0 0 40px rgba(0,212,255,0.2)',
+            'card':      '0 2px 12px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05)',
+            'card-hover':'0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(26,111,255,0.2), 0 0 24px rgba(26,111,255,0.1)',
+          },
+          backgroundImage: {
+            'radial-brand': 'radial-gradient(ellipse at 60% 0%, rgba(26,111,255,0.2) 0%, transparent 60%)',
+            'radial-teal':  'radial-gradient(ellipse at 20% 100%, rgba(0,212,255,0.12) 0%, transparent 55%)',
+            'radial-center':'radial-gradient(circle at 50% 50%, rgba(26,111,255,0.18) 0%, transparent 65%)',
+            'card-gradient':'linear-gradient(145deg, rgba(17,29,53,1) 0%, rgba(13,21,38,1) 100%)',
+            'cta-gradient': 'linear-gradient(135deg, rgba(26,111,255,0.18) 0%, rgba(0,212,255,0.08) 100%)',
+          },
+          animation: {
+            'float':      'float 4s ease-in-out infinite',
+            'spin-slow':  'spin 22s linear infinite',
+            'spin-mid':   'spin-rev 14s linear infinite',
+            'spin-fast':  'spin 9s linear infinite',
+            'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+            'dot-pulse':  'dot-pulse 2s ease-in-out infinite',
+            'fade-up':    'fade-up 0.6s ease forwards',
+          },
+          keyframes: {
+            float:       { '0%,100%': { transform: 'translateY(0) scale(1)' }, '50%': { transform: 'translateY(-12px) scale(1.03)' } },
+            'spin-rev':  { to: { transform: 'rotate(-360deg)' } },
+            'glow-pulse':{ '0%,100%': { transform: 'scale(1)', opacity: '0.7' }, '50%': { transform: 'scale(1.18)', opacity: '1' } },
+            'dot-pulse': { '0%,100%': { opacity: '1' }, '50%': { opacity: '0.3' } },
+            'fade-up':   { from: { opacity: '0', transform: 'translateY(22px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ─── Base ─── */
+    body { background-color: #080d18; color: #fff; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+
+    /* Grain texture overlay */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px 128px;
+      opacity: 0.028;
+    }
+
+    /* ─── Typography ─── */
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    .font-mono    { font-family: 'Space Mono', monospace; }
+
+    /* ─── Scroll-triggered fade-up ─── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── Nav ─── */
+    #navbar { transition: background 0.3s, padding 0.3s, box-shadow 0.3s; }
+    #navbar.scrolled { background: rgba(8,13,24,0.88); backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(255,255,255,0.05); }
+
+    /* ─── Logo ─── */
+    .logo-img { filter: brightness(0) invert(1) drop-shadow(0 0 6px rgba(0,212,255,0.5)); }
+    .hero-logo-img {
+      filter:
+        brightness(0) invert(1)
+        drop-shadow(0 0 16px rgba(26,111,255,1))
+        drop-shadow(0 0 40px rgba(0,212,255,0.7))
+        drop-shadow(0 0 80px rgba(26,111,255,0.4));
+    }
+
+    /* ─── Rings ─── */
+    .ring { position: absolute; inset: 0; border-radius: 9999px; }
+    .ring-outer { border: 1px solid rgba(26,111,255,0.22); animation: spin 22s linear infinite; }
+    .ring-mid   { inset: 42px; border: 1px dashed rgba(0,212,255,0.18); animation: spin-rev 14s linear infinite; }
+    .ring-inner { inset: 84px; border: 1px solid rgba(26,111,255,0.12); animation: spin 9s linear infinite; }
+    @keyframes spin     { to { transform: rotate(360deg); } }
+    @keyframes spin-rev { to { transform: rotate(-360deg); } }
+
+    .ring-outer::before {
+      content: ''; position: absolute;
+      width: 10px; height: 10px; border-radius: 9999px;
+      background: #00d4ff; box-shadow: 0 0 14px #00d4ff, 0 0 28px rgba(0,212,255,0.6);
+      top: -5px; left: 50%; transform: translateX(-50%);
+    }
+    .ring-mid::before {
+      content: ''; position: absolute;
+      width: 8px; height: 8px; border-radius: 9999px;
+      background: #1a6fff; box-shadow: 0 0 14px #1a6fff, 0 0 28px rgba(26,111,255,0.6);
+      bottom: -4px; right: 18%;
+    }
+
+    /* ─── Glow backdrop ─── */
+    .glow-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+    .glow-bg::before {
+      content: ''; width: 200px; height: 200px; border-radius: 9999px;
+      background: radial-gradient(circle, rgba(26,111,255,0.38) 0%, rgba(0,212,255,0.18) 40%, transparent 70%);
+      animation: glow-pulse 3s ease-in-out infinite;
+    }
+    @keyframes glow-pulse { '0%,100%': { transform: scale(1); opacity: 0.7; } '50%': { transform: scale(1.18); opacity: 1; } }
+
+    /* ─── Cards ─── */
+    .card {
+      background: linear-gradient(145deg, #111d35, #0d1526);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      position: relative; overflow: hidden;
+      transition: border-color 0.25s cubic-bezier(0.16,1,0.3,1),
+                  transform   0.25s cubic-bezier(0.16,1,0.3,1),
+                  box-shadow  0.25s cubic-bezier(0.16,1,0.3,1);
+    }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, #1a6fff, transparent);
+      opacity: 0; transition: opacity 0.25s;
+    }
+    .card:hover { border-color: rgba(26,111,255,0.28); transform: translateY(-5px); box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(26,111,255,0.18), 0 0 24px rgba(26,111,255,0.1); }
+    .card:hover::before { opacity: 1; }
+
+    /* ─── Buttons ─── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px; border-radius: 8px;
+      background: #1a6fff; color: #fff;
+      font-family: 'Space Mono', monospace; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+      border: none; cursor: pointer;
+      box-shadow: 0 4px 24px rgba(26,111,255,0.35), 0 0 0 1px rgba(26,111,255,0.15);
+      transition: background 0.2s cubic-bezier(0.16,1,0.3,1),
+                  box-shadow 0.2s cubic-bezier(0.16,1,0.3,1),
+                  transform  0.15s cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-primary:hover  { background: #4d97ff; box-shadow: 0 8px 40px rgba(26,111,255,0.5), 0 0 60px rgba(0,212,255,0.15); transform: translateY(-2px); }
+    .btn-primary:focus-visible { outline: 2px solid #00d4ff; outline-offset: 3px; }
+    .btn-primary:active { transform: translateY(0); box-shadow: 0 2px 12px rgba(26,111,255,0.3); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 30px; border-radius: 8px;
+      background: transparent; color: #fff;
+      font-family: 'Space Mono', monospace; font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.12); cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+    .btn-outline:hover  { border-color: #00d4ff; color: #00d4ff; box-shadow: 0 0 16px rgba(0,212,255,0.18); transform: translateY(-1px); }
+    .btn-outline:focus-visible { outline: 2px solid #00d4ff; outline-offset: 3px; }
+    .btn-outline:active { transform: translateY(0); }
+
+    /* ─── Steps connector ─── */
+    @media (min-width: 768px) {
+      .steps-row::before {
+        content: ''; position: absolute;
+        top: 36px; left: 12.5%; right: 12.5%;
+        height: 1px; background: linear-gradient(90deg, transparent, #3a4a6b, #3a4a6b, transparent);
+      }
+    }
+
+    /* ─── Misc ─── */
+    .tag-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Space Mono', monospace; font-size: 0.68rem;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #00d4ff;
+    }
+    .tag-pill::before { content: '//'; opacity: 0.45; }
+
+    .hero-grid-bg {
+      background-image: linear-gradient(rgba(26,111,255,0.055) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(26,111,255,0.055) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+    }
+
+    .stat-bar { width: 3px; border-radius: 9999px; background: #3a4a6b; }
+    .stat-bar-fill { border-radius: 9999px; background: linear-gradient(180deg, #00d4ff, #1a6fff); }
+  </style>
+</head>
+<body class="relative">
+
+  <!-- ═══════════════════════════════════════════
+       NAV
+  ═══════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-5">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between gap-6">
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="brand_asset/LogoMakr-9nt01b.png" alt="AIS" class="h-9 w-auto logo-img transition-transform duration-200 group-hover:scale-105" />
+        <span class="font-mono text-sm font-bold leading-tight tracking-wide">
+          AI Automation<br><span class="text-teal-DEFAULT" style="color:#00d4ff">Society</span>
+        </span>
+      </a>
+
+      <!-- Links -->
+      <ul class="hidden md:flex items-center gap-9 list-none">
+        <li><a href="#what"          class="font-mono text-xs tracking-widest uppercase text-smoke-DEFAULT hover:text-white transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-DEFAULT focus-visible:outline-offset-4 rounded" style="color:#8a9bbf">What We Do</a></li>
+        <li><a href="#how"           class="font-mono text-xs tracking-widest uppercase text-smoke-DEFAULT hover:text-white transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-DEFAULT focus-visible:outline-offset-4 rounded" style="color:#8a9bbf">How It Works</a></li>
+        <li><a href="#community"     class="font-mono text-xs tracking-widest uppercase text-smoke-DEFAULT hover:text-white transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-DEFAULT focus-visible:outline-offset-4 rounded" style="color:#8a9bbf">Community</a></li>
+        <li><a href="#testimonials"  class="font-mono text-xs tracking-widest uppercase text-smoke-DEFAULT hover:text-white transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-DEFAULT focus-visible:outline-offset-4 rounded" style="color:#8a9bbf">Members</a></li>
+      </ul>
+
+      <!-- CTAs -->
+      <div class="flex items-center gap-3">
+        <a href="#cta" class="btn-outline hidden sm:inline-flex">Log In</a>
+        <a href="#cta" class="btn-primary">Join Free →</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-28 pb-20">
+
+    <!-- Multi-layer radial gradients -->
+    <div class="pointer-events-none absolute inset-0">
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse 70% 60% at 70% -5%, rgba(26,111,255,0.22) 0%, transparent 60%);"></div>
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse 55% 50% at 15% 110%, rgba(0,212,255,0.12) 0%, transparent 55%);"></div>
+      <div class="absolute inset-0" style="background: radial-gradient(circle at 50% 50%, rgba(26,111,255,0.06) 0%, transparent 50%);"></div>
+    </div>
+
+    <!-- Grid -->
+    <div class="pointer-events-none absolute inset-0 hero-grid-bg"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left -->
+        <div class="max-w-xl">
+          <!-- Live badge -->
+          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border mb-8"
+               style="background:rgba(26,111,255,0.1);border-color:rgba(26,111,255,0.28)">
+            <span class="w-1.5 h-1.5 rounded-full bg-teal-DEFAULT animate-[dot-pulse_2s_ease-in-out_infinite]" style="background:#00d4ff;animation:dot-pulse 2s ease-in-out infinite"></span>
+            <span class="font-mono text-xs tracking-widest uppercase" style="color:#00d4ff">Now Accepting Members</span>
+          </div>
+
+          <h1 class="font-display font-extrabold leading-[1.08] mb-6"
+              style="font-size:clamp(2.6rem,5.5vw,4rem);letter-spacing:-0.03em">
+            Automate Smarter.<br>
+            Scale <span style="color:#1a6fff">Faster.</span><br>
+            <span style="color:#00d4ff">Together.</span>
+          </h1>
+
+          <p class="text-base leading-[1.75] mb-10 max-w-md" style="color:#8a9bbf">
+            The premier community for AI automation practitioners. Learn, build, and deploy intelligent systems with members reshaping industries — one workflow at a time.
+          </p>
+
+          <div class="flex flex-wrap gap-3 mb-14">
+            <a href="#cta" class="btn-primary">Join the Society →</a>
+            <a href="#what" class="btn-outline">Explore What We Do</a>
+          </div>
+
+          <!-- Stats row -->
+          <div class="flex gap-10 pt-8 border-t" style="border-color:rgba(58,74,107,0.6)">
+            <div>
+              <div class="font-mono font-bold text-2xl leading-none mb-1">2.4<span style="color:#00d4ff">K+</span></div>
+              <div class="text-xs tracking-wide" style="color:#8a9bbf">Active Members</div>
+            </div>
+            <div>
+              <div class="font-mono font-bold text-2xl leading-none mb-1">180<span style="color:#00d4ff">+</span></div>
+              <div class="text-xs tracking-wide" style="color:#8a9bbf">Automation Blueprints</div>
+            </div>
+            <div>
+              <div class="font-mono font-bold text-2xl leading-none mb-1">98<span style="color:#00d4ff">%</span></div>
+              <div class="text-xs tracking-wide" style="color:#8a9bbf">Satisfaction Rate</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right — Logo visual -->
+        <div class="relative flex items-center justify-center">
+          <div class="relative" style="width:420px;height:420px">
+            <div class="ring ring-outer"></div>
+            <div class="ring ring-mid"></div>
+            <div class="ring ring-inner"></div>
+            <div class="glow-bg"></div>
+
+            <!-- Logo -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <img src="brand_asset/LogoMakr-9nt01b.png" alt="AIS Logo"
+                   class="hero-logo-img animate-[float_4s_ease-in-out_infinite]"
+                   style="width:175px;height:175px;object-fit:contain;animation:float 4s ease-in-out infinite" />
+            </div>
+
+            <!-- Floating stat cards -->
+            <div class="absolute -right-4 bottom-12 card px-4 py-3 min-w-[168px]"
+                 style="box-shadow:0 8px 24px rgba(0,0,0,0.4)">
+              <div class="font-mono text-[0.62rem] tracking-widest uppercase mb-1" style="color:#8a9bbf">Hours Saved / Mo</div>
+              <div class="font-mono font-bold text-lg" style="color:#00d4ff">↑ 1,240h</div>
+            </div>
+            <div class="absolute -left-4 top-16 card px-4 py-3 min-w-[168px]"
+                 style="box-shadow:0 8px 24px rgba(0,0,0,0.4)">
+              <div class="font-mono text-[0.62rem] tracking-widest uppercase mb-1" style="color:#8a9bbf">Workflows Deployed</div>
+              <div class="font-mono font-bold text-lg" style="color:#00d4ff">↑ 3,870</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       WHAT WE DO
+  ═══════════════════════════════════════════ -->
+  <section id="what" class="relative py-28" style="background:linear-gradient(180deg,#080d18 0%,#0d1526 100%)">
+    <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(26,111,255,0.07) 0%,transparent 60%)"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="tag-pill mb-4">What We Do</div>
+        <h2 class="font-display font-extrabold mb-4" style="font-size:clamp(1.9rem,3.5vw,2.9rem);letter-spacing:-0.03em;line-height:1.12">
+          Everything You Need to<br>Master AI Automation
+        </h2>
+        <p class="text-base leading-[1.75] max-w-lg mx-auto" style="color:#8a9bbf">
+          From no-code tools to custom AI pipelines — knowledge, resources, and community to build what matters.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card template -->
+        <div class="card p-9 reveal">
+          <span class="font-mono text-[0.6rem] tracking-widest absolute top-6 right-6" style="color:#3a4a6b">01</span>
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"
+               style="background:rgba(26,111,255,0.12);border:1px solid rgba(26,111,255,0.2)">⚡</div>
+          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Workflow Blueprints</h3>
+          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">180+ ready-to-deploy automation templates across n8n, Make, Zapier, and custom AI pipelines. Copy, adapt, launch.</p>
+        </div>
+
+        <div class="card p-9 reveal">
+          <span class="font-mono text-[0.6rem] tracking-widest absolute top-6 right-6" style="color:#3a4a6b">02</span>
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"
+               style="background:rgba(26,111,255,0.12);border:1px solid rgba(26,111,255,0.2)">🤖</div>
+          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">AI Agent Training</h3>
+          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Structured courses on building multi-agent systems with Claude, GPT, and open-source LLMs. Theory meets hands-on implementation.</p>
+        </div>
+
+        <div class="card p-9 reveal">
+          <span class="font-mono text-[0.6rem] tracking-widest absolute top-6 right-6" style="color:#3a4a6b">03</span>
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"
+               style="background:rgba(26,111,255,0.12);border:1px solid rgba(26,111,255,0.2)">🔗</div>
+          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Live Integrations</h3>
+          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Step-by-step guides for connecting your stack: CRMs, ERPs, databases, and 500+ APIs — no backend degree required.</p>
+        </div>
+
+        <div class="card p-9 reveal">
+          <span class="font-mono text-[0.6rem] tracking-widest absolute top-6 right-6" style="color:#3a4a6b">04</span>
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"
+               style="background:rgba(26,111,255,0.12);border:1px solid rgba(26,111,255,0.2)">📡</div>
+          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Weekly Expert Sessions</h3>
+          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Live calls with automation engineers, founders, and AI researchers. Bring your builds, get real feedback, leave with solutions.</p>
+        </div>
+
+        <div class="card p-9 reveal">
+          <span class="font-mono text-[0.6rem] tracking-widest absolute top-6 right-6" style="color:#3a4a6b">05</span>
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"
+               style="background:rgba(26,111,255,0.12);border:1px solid rgba(26,111,255,0.2)">🛡️</div>
+          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Private Community</h3>
+          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">A focused, high-signal space — no noise, no fluff. Share wins, debug together, and collaborate on projects that ship.</p>
+        </div>
+
+        <div class="card p-9 reveal">
+          <span class="font-mono text-[0.6rem] tracking-widest absolute top-6 right-6" style="color:#3a4a6b">06</span>
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"
+               style="background:rgba(26,111,255,0.12);border:1px solid rgba(26,111,255,0.2)">📊</div>
+          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">ROI Playbooks</h3>
+          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Real case studies breaking down exactly how members saved time, reduced cost, and scaled revenue using AI automation.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       HOW IT WORKS
+  ═══════════════════════════════════════════ -->
+  <section id="how" class="relative py-28 overflow-hidden" style="background:#0d1526">
+    <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(circle at 50% 50%,rgba(0,212,255,0.06) 0%,transparent 60%)"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20 reveal">
+        <div class="tag-pill mb-4">Process</div>
+        <h2 class="font-display font-extrabold mb-4" style="font-size:clamp(1.9rem,3.5vw,2.9rem);letter-spacing:-0.03em;line-height:1.12">
+          From Zero to Automated<br>in Four Steps
+        </h2>
+        <p class="text-base leading-[1.75] max-w-md mx-auto" style="color:#8a9bbf">
+          A clear path from joining to deploying your first intelligent automation.
+        </p>
+      </div>
+
+      <div class="relative steps-row grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0">
+        <!-- Step -->
+        <div class="flex flex-col items-center text-center px-5 reveal">
+          <div class="w-[72px] h-[72px] rounded-full flex items-center justify-center font-mono font-bold text-lg mb-7 relative z-10"
+               style="background:#111d35;border:1px solid rgba(26,111,255,0.3);color:#1a6fff;box-shadow:0 0 0 6px #0d1526">01</div>
+          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Join Free</h3>
+          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Create your account in 60 seconds. No credit card, no commitment. Instant access to the community vault.</p>
+        </div>
+        <div class="flex flex-col items-center text-center px-5 reveal">
+          <div class="w-[72px] h-[72px] rounded-full flex items-center justify-center font-mono font-bold text-lg mb-7 relative z-10"
+               style="background:#111d35;border:1px solid rgba(26,111,255,0.3);color:#1a6fff;box-shadow:0 0 0 6px #0d1526">02</div>
+          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Pick Your Path</h3>
+          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Select your focus: sales, operations, content, finance, or custom AI agents. Your roadmap is pre-built.</p>
+        </div>
+        <div class="flex flex-col items-center text-center px-5 reveal">
+          <div class="w-[72px] h-[72px] rounded-full flex items-center justify-center font-mono font-bold text-lg mb-7 relative z-10"
+               style="background:#111d35;border:1px solid rgba(26,111,255,0.3);color:#1a6fff;box-shadow:0 0 0 6px #0d1526">03</div>
+          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Build & Deploy</h3>
+          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Follow blueprints, attend live sessions, ship your first automation. Average 7 days to first live workflow.</p>
+        </div>
+        <div class="flex flex-col items-center text-center px-5 reveal">
+          <div class="w-[72px] h-[72px] rounded-full flex items-center justify-center font-mono font-bold text-lg mb-7 relative z-10"
+               style="background:#111d35;border:1px solid rgba(26,111,255,0.3);color:#1a6fff;box-shadow:0 0 0 6px #0d1526">04</div>
+          <h3 class="font-mono font-bold text-sm tracking-wide mb-3">Scale & Share</h3>
+          <p class="text-sm leading-[1.75]" style="color:#8a9bbf">Compound your results, share what you've built, and earn your place as a top contributor.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       COMMUNITY
+  ═══════════════════════════════════════════ -->
+  <section id="community" class="relative py-28" style="background:#080d18">
+    <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(ellipse 50% 60% at 80% 50%,rgba(26,111,255,0.08) 0%,transparent 55%)"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left -->
+        <div class="reveal">
+          <div class="tag-pill mb-4">Community</div>
+          <h2 class="font-display font-extrabold mb-5" style="font-size:clamp(1.9rem,3vw,2.7rem);letter-spacing:-0.03em;line-height:1.12">
+            Built by Practitioners.<br>For Practitioners.
+          </h2>
+          <p class="text-base leading-[1.75] mb-10 max-w-md" style="color:#8a9bbf">
+            We're not a course platform. Not a Discord of lurkers. AI Automation Society is a working community — questions get answered, builds get shipped, members genuinely help each other grow.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="#cta" class="btn-primary">Join the Community →</a>
+            <a href="#testimonials" class="btn-outline">Read Stories</a>
+          </div>
+        </div>
+
+        <!-- Right — stat grid -->
+        <div class="grid grid-cols-2 gap-4 reveal">
+          <!-- Featured wide card -->
+          <div class="col-span-2 card flex items-center gap-6 px-8 py-6"
+               style="background:linear-gradient(135deg,rgba(26,111,255,0.16),rgba(0,212,255,0.08));border-color:rgba(26,111,255,0.25)">
+            <div>
+              <div class="font-mono font-bold leading-none mb-2" style="font-size:2.4rem">2.4<span style="color:#00d4ff;font-size:1.4rem">K</span></div>
+              <div class="text-xs tracking-wide" style="color:#8a9bbf">Active Practitioners</div>
+            </div>
+            <div class="text-4xl ml-auto">🌐</div>
+          </div>
+
+          <div class="card px-6 py-7">
+            <div class="font-mono font-bold leading-none mb-2" style="font-size:1.9rem">180<span style="color:#00d4ff;font-size:1.1rem">+</span></div>
+            <div class="text-xs tracking-wide" style="color:#8a9bbf">Blueprints in Vault</div>
+          </div>
+          <div class="card px-6 py-7">
+            <div class="font-mono font-bold leading-none mb-2" style="font-size:1.9rem">47<span style="color:#00d4ff;font-size:1.1rem">+</span></div>
+            <div class="text-xs tracking-wide" style="color:#8a9bbf">Countries</div>
+          </div>
+          <div class="card px-6 py-7">
+            <div class="font-mono font-bold leading-none mb-2" style="font-size:1.9rem">3.8<span style="color:#00d4ff;font-size:1.1rem">K</span></div>
+            <div class="text-xs tracking-wide" style="color:#8a9bbf">Workflows Deployed</div>
+          </div>
+          <div class="card px-6 py-7">
+            <div class="font-mono font-bold leading-none mb-2" style="font-size:1.9rem">12<span style="color:#00d4ff;font-size:1.1rem">h</span></div>
+            <div class="text-xs tracking-wide" style="color:#8a9bbf">Avg Saved / Week</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       TESTIMONIALS
+  ═══════════════════════════════════════════ -->
+  <section id="testimonials" class="relative py-28" style="background:#0d1526">
+    <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(ellipse 55% 40% at 50% 100%,rgba(26,111,255,0.07) 0%,transparent 55%)"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <div class="tag-pill mb-4">Members</div>
+        <h2 class="font-display font-extrabold mb-4" style="font-size:clamp(1.9rem,3.5vw,2.9rem);letter-spacing:-0.03em">What Members Are Building</h2>
+        <p class="text-base leading-[1.75] max-w-md mx-auto" style="color:#8a9bbf">Real results from real practitioners inside the AI Automation Society.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div class="card p-8 reveal">
+          <p class="text-sm leading-[1.8] mb-7 italic" style="color:#8a9bbf">
+            <span style="color:#1a6fff;font-size:1.3rem;font-style:normal">"</span>
+            Automated my entire lead qualification pipeline in one week using the blueprints here. Saved 15 hours a week and closed 3 extra deals last month alone.
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-mono text-sm font-bold flex-shrink-0"
+                 style="background:linear-gradient(135deg,#1a6fff,#00d4ff)">JM</div>
+            <div>
+              <div class="font-mono text-xs font-semibold">James M.</div>
+              <div class="text-xs mt-0.5" style="color:#8a9bbf">Sales Director, SaaS Startup</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card p-8 reveal">
+          <p class="text-sm leading-[1.8] mb-7 italic" style="color:#8a9bbf">
+            <span style="color:#1a6fff;font-size:1.3rem;font-style:normal">"</span>
+            The live sessions alone are worth it. Got feedback on my AI agent build from someone who's deployed it at scale. That kind of access doesn't exist anywhere else.
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-mono text-sm font-bold flex-shrink-0"
+                 style="background:linear-gradient(135deg,#1a6fff,#00d4ff)">SK</div>
+            <div>
+              <div class="font-mono text-xs font-semibold">Sofia K.</div>
+              <div class="text-xs mt-0.5" style="color:#8a9bbf">Operations Lead, Agency</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card p-8 reveal">
+          <p class="text-sm leading-[1.8] mb-7 italic" style="color:#8a9bbf">
+            <span style="color:#1a6fff;font-size:1.3rem;font-style:normal">"</span>
+            Came in knowing nothing about n8n. Three weeks later I had a full client reporting automation running. The walkthroughs are genuinely excellent.
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-mono text-sm font-bold flex-shrink-0"
+                 style="background:linear-gradient(135deg,#1a6fff,#00d4ff)">RT</div>
+            <div>
+              <div class="font-mono text-xs font-semibold">Raj T.</div>
+              <div class="text-xs mt-0.5" style="color:#8a9bbf">Freelance Consultant</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       CTA BANNER
+  ═══════════════════════════════════════════ -->
+  <section id="cta" class="relative py-20" style="background:#080d18">
+    <div class="max-w-7xl mx-auto px-6 reveal">
+      <div class="relative rounded-3xl overflow-hidden px-10 py-20 text-center"
+           style="background:linear-gradient(135deg,rgba(26,111,255,0.16) 0%,rgba(0,212,255,0.07) 100%);border:1px solid rgba(26,111,255,0.25)">
+
+        <!-- Inner glow -->
+        <div class="pointer-events-none absolute inset-0" style="background:radial-gradient(circle at 50% 50%,rgba(26,111,255,0.18) 0%,transparent 60%)"></div>
+
+        <div class="relative z-10">
+          <div class="tag-pill justify-center mb-5">Get Started Today</div>
+          <h2 class="font-display font-extrabold mb-4" style="font-size:clamp(1.9rem,3.5vw,3rem);letter-spacing:-0.03em">
+            Ready to Automate<br>Your World?
+          </h2>
+          <p class="text-base leading-[1.75] mb-10 max-w-md mx-auto" style="color:#8a9bbf">
+            Join 2,400+ practitioners already inside. Free to start. No credit card required.
+          </p>
+          <div class="flex justify-center flex-wrap gap-4">
+            <a href="#" class="btn-primary" style="padding:16px 44px;font-size:0.85rem">Create Free Account →</a>
+            <a href="#what" class="btn-outline" style="padding:15px 40px;font-size:0.85rem">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="relative py-16 border-t" style="background:#0d1526;border-color:rgba(255,255,255,0.05)">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
+        <!-- Brand -->
+        <div class="lg:col-span-1">
+          <a href="#" class="flex items-center gap-3 group mb-4">
+            <img src="brand_asset/LogoMakr-9nt01b.png" alt="AIS" class="logo-img transition-transform duration-200 group-hover:scale-105" style="height:30px;width:auto" />
+            <span class="font-mono text-sm font-bold leading-tight">AI Automation<br><span style="color:#00d4ff">Society</span></span>
+          </a>
+          <p class="text-sm leading-[1.75]" style="color:#8a9bbf;max-width:240px">The premier community for AI automation practitioners — building smarter systems, together.</p>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-[0.68rem] tracking-widest uppercase mb-5" style="color:#8a9bbf">Resources</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded" style="color:#8a9bbf">Blueprint Vault</a></li>
+            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Course Library</a></li>
+            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Case Studies</a></li>
+            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Tools Directory</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-[0.68rem] tracking-widest uppercase mb-5" style="color:#8a9bbf">Community</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Join Free</a></li>
+            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Live Sessions</a></li>
+            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Member Stories</a></li>
+            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Contribute</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-[0.68rem] tracking-widest uppercase mb-5" style="color:#8a9bbf">Company</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">About</a></li>
+            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Blog</a></li>
+            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Privacy Policy</a></li>
+            <li><a href="#" class="text-sm transition-colors duration-200 hover:text-white" style="color:#8a9bbf">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-5 pt-8 border-t" style="border-color:rgba(255,255,255,0.05)">
+        <div class="font-mono text-[0.68rem] tracking-widest" style="color:#3a4a6b">© 2026 AI Automation Society. All rights reserved.</div>
+        <div class="flex gap-3">
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-sm border transition-colors duration-200 hover:border-brand focus-visible:outline focus-visible:outline-2"
+             style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.08)" title="X / Twitter">𝕏</a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-sm border transition-colors duration-200 hover:border-brand"
+             style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.08)" title="LinkedIn">in</a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-sm border transition-colors duration-200 hover:border-brand"
+             style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.08)" title="YouTube">▶</a>
+          <a href="#" class="w-9 h-9 rounded-lg flex items-center justify-center text-sm border transition-colors duration-200 hover:border-brand"
+             style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.08)" title="Discord">💬</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // ── Sticky nav
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ── Scroll-triggered reveal
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // ── Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+
+    // ── Float animation (CSS keyframes fallback via JS)
+    const heroLogo = document.querySelector('.hero-logo-img');
+    if (heroLogo) {
+      let t = 0;
+      (function loop() {
+        t += 0.016;
+        const y = Math.sin(t * (Math.PI / 2)) * 12;
+        const s = 1 + Math.sin(t * (Math.PI / 2)) * 0.03;
+        heroLogo.style.transform = `translateY(${y}px) scale(${s})`;
+        requestAnimationFrame(loop);
+      })();
+    }
+
+    // ── Glow pulse (CSS keyframes fallback)
+    const glowEl = document.querySelector('.glow-bg');
+    if (glowEl) {
+      let g = 0;
+      (function loop() {
+        g += 0.012;
+        const sc = 1 + Math.sin(g) * 0.18;
+        const op = 0.7 + Math.sin(g) * 0.3;
+        if (glowEl.firstElementChild) {
+          glowEl.firstElementChild.style.transform = `scale(${sc})`;
+          glowEl.firstElementChild.style.opacity = op;
+        }
+        requestAnimationFrame(loop);
+      })();
+    }
+  </script>
+</body>
+</html>

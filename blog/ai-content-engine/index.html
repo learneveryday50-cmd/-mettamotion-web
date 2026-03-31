@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Posting Every Day Without Burning Out: Our AI Content Engine Explained — Mettamotion Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { navy:{DEFAULT:'#080d18',2:'#0d1526',3:'#111d35',4:'#182440'}, brand:{DEFAULT:'#1a6fff',dim:'#1256cc',glow:'#4d97ff'}, teal:{DEFAULT:'#00d4ff',dim:'#00a8cc'}, smoke:{DEFAULT:'#8a9bbf',dim:'#3a4a6b'} },
+        fontFamily: { display:['Space Grotesk','sans-serif'], body:['DM Sans','sans-serif'], mono:['Space Mono','monospace'] }
+      }}
+    }
+  </script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:#080d18;color:#fff;font-family:'DM Sans',sans-serif;overflow-x:hidden}
+    body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:128px 128px;opacity:0.025}
+    #nav{transition:background .3s,box-shadow .3s}
+    #nav.scrolled{background:rgba(8,13,24,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(255,255,255,.05)}
+    .logo-img{filter:brightness(0) invert(1) drop-shadow(0 0 6px rgba(0,212,255,.45));transition:transform .2s}
+    .logo-img:hover{transform:scale(1.06)}
+    .btn-p{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:8px;background:#1a6fff;color:#fff;font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;box-shadow:0 4px 20px rgba(26,111,255,.35);transition:background .2s,transform .15s}
+    .btn-p:hover{background:#4d97ff;transform:translateY(-2px)}
+    .cat-badge{display:inline-block;padding:5px 11px;border-radius:100px;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase}
+    .cat-ai{background:rgba(26,111,255,.22);border:1px solid rgba(26,111,255,.4);color:#4d97ff}
+    .cat-marketing{background:rgba(0,212,255,.15);border:1px solid rgba(0,212,255,.35);color:#00d4ff}
+    .cat-automation{background:rgba(138,71,255,.2);border:1px solid rgba(138,71,255,.4);color:#b97fff}
+    .prose h2{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;margin:2.2rem 0 .9rem;color:#fff}
+    .prose h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin:1.8rem 0 .7rem;color:#fff}
+    .prose p{color:#8a9bbf;line-height:1.8;margin-bottom:1.2rem;font-size:1rem}
+    .prose ul{color:#8a9bbf;line-height:1.8;margin-bottom:1.2rem;padding-left:1.4rem}
+    .prose ul li{margin-bottom:.5rem}
+    .prose strong{color:#fff;font-weight:600}
+    .prose blockquote{border-left:3px solid #1a6fff;padding:12px 20px;margin:1.8rem 0;background:rgba(26,111,255,.06);border-radius:0 8px 8px 0}
+    .prose blockquote p{color:#d0d8f0;margin:0}
+    .back-link{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#8a9bbf;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
+    .back-link:hover{color:#00d4ff}
+  </style>
+</head>
+<body class="relative">
+
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 py-5">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between gap-6">
+    <a href="/homepage.html" class="flex items-center">
+      <img src="/brand_asset/LogoMakr-9nt01b.png" alt="Mettamotion" class="logo-img" style="height:42px;width:auto" />
+    </a>
+    <ul class="hidden md:flex items-center gap-10" style="list-style:none">
+      <li><a href="/blog" style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;color:#00d4ff;text-decoration:none">Blog</a></li>
+      <li><a href="/contact" style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;color:#fff;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#00d4ff'" onmouseout="this.style.color='#fff'">Contact</a></li>
+    </ul>
+    <a href="/free-audit" class="btn-p">Free Audit →</a>
+  </div>
+</nav>
+
+<main class="relative z-10 max-w-3xl mx-auto px-6 pt-36 pb-28">
+  <a href="/blog" class="back-link mb-8 block">← Back to Blog</a>
+  <span class="cat-badge cat-marketing mb-5 inline-block">Marketing</span>
+  <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:20px">Posting Every Day Without Burning Out: Our AI Content Engine Explained</h1>
+  <p style="color:#3a4a6b;font-family:'Space Mono',monospace;font-size:.78rem;margin-bottom:40px">Feb 26, 2026 &nbsp;·&nbsp; 4 min read</p>
+  <div class="rounded-2xl overflow-hidden mb-12" style="height:380px">
+    <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=1400&q=80" alt="Social media content creation" style="width:100%;height:100%;object-fit:cover;filter:brightness(.85)" />
+  </div>
+  <div class="prose">
+
+    <p>Consistent daily posting sounds simple until you actually try to do it for three months straight. Content ideas get harder. Quality drops. The founder who started enthusiastically writing LinkedIn posts in January is recycling old content by March. We built our AI content engine specifically to solve this — not to replace original thinking, but to remove every bottleneck between having an idea and having a post ready to schedule. Here is exactly how it works.</p>
+
+    <h2>The Constraint We Designed Around</h2>
+    <p>The bottleneck in most content operations is not ideas — it is the gap between having an idea and having finished, formatted, platform-appropriate content ready to publish. That gap is filled with friction: opening a doc, writing a draft, editing it, formatting it for LinkedIn vs Twitter vs the newsletter, finding the right image, and scheduling it. Multiply that by daily posting across three platforms and you have a part-time job that nobody budgeted for.</p>
+    <p>Our engine eliminates that gap. The human's job is reduced to two things: providing raw input (a voice note, a bullet point, a link to an article they found interesting) and approving the output. Everything in between is automated.</p>
+
+    <h2>The Input Layer: Capturing Ideas in Under 60 Seconds</h2>
+    <p>The most important design decision we made was making the input as low-friction as possible. We use three input channels:</p>
+    <ul>
+      <li><strong>Voice notes via Telegram or WhatsApp:</strong> The founder speaks a rough thought into their phone — a minute or less. A webhook picks up the audio, transcribes it using Whisper, and sends the transcript to the content queue in Airtable with a "raw_idea" tag.</li>
+      <li><strong>Link drops:</strong> They forward an interesting article to a dedicated Telegram channel. The automation scrapes the article content, extracts the key insight, and queues it with a "reaction_post" content type flag.</li>
+      <li><strong>Weekly brain dump:</strong> Once per week, a Typeform form asks five questions designed to surface opinions, observations from client work, and predictions. The answers feed into the content queue as "evergreen" pieces.</li>
+    </ul>
+    <p>The rule is that no input should take more than 90 seconds to provide. If it takes longer, the engine will not get used consistently. Keep the friction below the threshold of avoidance.</p>
+
+    <h2>The Processing Layer: From Raw Input to Draft Content</h2>
+    <p>Every item in the content queue is processed by an n8n workflow that runs twice daily. The workflow reads unprocessed items from Airtable, determines the content type, and routes them through the appropriate generation prompt:</p>
+    <ul>
+      <li><strong>Voice note transcripts</strong> go through a "develop and expand" prompt that takes the rough thought and turns it into a complete LinkedIn post in the founder's established voice (which we have captured in a detailed style guide stored in the system prompt)</li>
+      <li><strong>Article reactions</strong> go through an "opinion extraction" prompt that pulls the most interesting claim from the article and generates a post that takes a clear stance — agree, disagree, or nuance — rather than just summarizing</li>
+      <li><strong>Brain dump answers</strong> go through a "personal insight" prompt that formats the answer as a value-forward post with a concrete takeaway</li>
+    </ul>
+    <p>Each generated post is automatically adapted into three formats: a LinkedIn long-form post, a Twitter/X thread opener, and a 120-word newsletter paragraph. All three are written back to the Airtable record for review.</p>
+
+    <blockquote>
+      <p>"The best AI content engine is the one you actually use. That means the input has to feel like texting, not writing. Once we made it that easy to feed the system, the consistency problem solved itself."</p>
+    </blockquote>
+
+    <h2>The Voice Layer: Making AI Sound Like You</h2>
+    <p>The most common failure mode of AI content generation is homogenization — everything starts to sound the same. We solve this with a detailed voice document that lives in the system prompt for every content generation call. This document captures:</p>
+    <ul>
+      <li>Sentence length patterns (how often does this person use short punchy sentences vs longer explanatory ones)</li>
+      <li>Vocabulary preferences and terms they use vs avoid (do they say "leverage" or do they avoid consultant-speak)</li>
+      <li>Opinion temperature (are they provocative and declarative, or measured and nuanced)</li>
+      <li>Signature structural moves (do they always end with a question, do they use numbered lists, do they open with a story)</li>
+      <li>Topics they have strong views on and topics they avoid</li>
+    </ul>
+    <p>We build this document by analyzing 50-100 pieces of content the person has already written. The AI is not generating generic content — it is generating content in a specific, defined voice. The founder's review step is mostly checking facts and approving tone, not rewriting entirely.</p>
+
+    <h2>The Approval and Scheduling Layer</h2>
+    <p>Twice a week, the founder gets a Slack message with links to five to seven posts ready for review in Airtable. Each post has three buttons: Approve, Edit, or Reject. Approved posts are automatically scheduled in Buffer or Publer for optimal posting times based on historical engagement data. Edited posts go back for one revision pass. Rejected posts are flagged for the content team to learn from.</p>
+    <p>The entire review session takes 15-20 minutes. The result is a fully stocked content calendar for the week, across multiple platforms, with minimal cognitive load. The founder stays in the loop and maintains quality control without being the bottleneck in the production process.</p>
+
+  </div>
+  <div class="mt-16 pt-10" style="border-top:1px solid rgba(255,255,255,.06)">
+    <p style="font-family:'Space Mono',monospace;font-size:.72rem;color:#3a4a6b;letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px">Ready to automate?</p>
+    <a href="/homepage.html" class="btn-p">Get Your Free Audit →</a>
+  </div>
+</main>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+</script>
+</body>
+</html>

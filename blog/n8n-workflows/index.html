@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5 n8n Workflows That Saved Our Clients 20+ Hours a Week — Mettamotion Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { navy:{DEFAULT:'#080d18',2:'#0d1526',3:'#111d35',4:'#182440'}, brand:{DEFAULT:'#1a6fff',dim:'#1256cc',glow:'#4d97ff'}, teal:{DEFAULT:'#00d4ff',dim:'#00a8cc'}, smoke:{DEFAULT:'#8a9bbf',dim:'#3a4a6b'} },
+        fontFamily: { display:['Space Grotesk','sans-serif'], body:['DM Sans','sans-serif'], mono:['Space Mono','monospace'] }
+      }}
+    }
+  </script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:#080d18;color:#fff;font-family:'DM Sans',sans-serif;overflow-x:hidden}
+    body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:128px 128px;opacity:0.025}
+    #nav{transition:background .3s,box-shadow .3s}
+    #nav.scrolled{background:rgba(8,13,24,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(255,255,255,.05)}
+    .logo-img{filter:brightness(0) invert(1) drop-shadow(0 0 6px rgba(0,212,255,.45));transition:transform .2s}
+    .logo-img:hover{transform:scale(1.06)}
+    .btn-p{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:8px;background:#1a6fff;color:#fff;font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;box-shadow:0 4px 20px rgba(26,111,255,.35);transition:background .2s,transform .15s}
+    .btn-p:hover{background:#4d97ff;transform:translateY(-2px)}
+    .cat-badge{display:inline-block;padding:5px 11px;border-radius:100px;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase}
+    .cat-ai{background:rgba(26,111,255,.22);border:1px solid rgba(26,111,255,.4);color:#4d97ff}
+    .cat-marketing{background:rgba(0,212,255,.15);border:1px solid rgba(0,212,255,.35);color:#00d4ff}
+    .cat-automation{background:rgba(138,71,255,.2);border:1px solid rgba(138,71,255,.4);color:#b97fff}
+    .prose h2{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;margin:2.2rem 0 .9rem;color:#fff}
+    .prose h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin:1.8rem 0 .7rem;color:#fff}
+    .prose p{color:#8a9bbf;line-height:1.8;margin-bottom:1.2rem;font-size:1rem}
+    .prose ul{color:#8a9bbf;line-height:1.8;margin-bottom:1.2rem;padding-left:1.4rem}
+    .prose ul li{margin-bottom:.5rem}
+    .prose strong{color:#fff;font-weight:600}
+    .prose blockquote{border-left:3px solid #1a6fff;padding:12px 20px;margin:1.8rem 0;background:rgba(26,111,255,.06);border-radius:0 8px 8px 0}
+    .prose blockquote p{color:#d0d8f0;margin:0}
+    .back-link{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#8a9bbf;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
+    .back-link:hover{color:#00d4ff}
+  </style>
+</head>
+<body class="relative">
+
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 py-5">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between gap-6">
+    <a href="/homepage.html" class="flex items-center">
+      <img src="/brand_asset/LogoMakr-9nt01b.png" alt="Mettamotion" class="logo-img" style="height:42px;width:auto" />
+    </a>
+    <ul class="hidden md:flex items-center gap-10" style="list-style:none">
+      <li><a href="/blog" style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;color:#00d4ff;text-decoration:none">Blog</a></li>
+      <li><a href="/contact" style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;color:#fff;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#00d4ff'" onmouseout="this.style.color='#fff'">Contact</a></li>
+    </ul>
+    <a href="/free-audit" class="btn-p">Free Audit →</a>
+  </div>
+</nav>
+
+<main class="relative z-10 max-w-3xl mx-auto px-6 pt-36 pb-28">
+  <a href="/blog" class="back-link mb-8 block">← Back to Blog</a>
+  <span class="cat-badge cat-automation mb-5 inline-block">Automation</span>
+  <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:20px">5 n8n Workflows That Saved Our Clients 20+ Hours a Week</h1>
+  <p style="color:#3a4a6b;font-family:'Space Mono',monospace;font-size:.78rem;margin-bottom:40px">Mar 10, 2026 &nbsp;·&nbsp; 9 min read</p>
+  <div class="rounded-2xl overflow-hidden mb-12" style="height:380px">
+    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=80" alt="Server infrastructure and automation" style="width:100%;height:100%;object-fit:cover;filter:brightness(.85)" />
+  </div>
+  <div class="prose">
+
+    <p>n8n's self-hosted model means no per-operation billing — once it is running, every workflow is essentially free to execute. That changes the economics of automation dramatically. Instead of rationing API calls or avoiding loops to keep costs down, you can build workflows that are thorough, redundant, and genuinely robust. Here are five workflows we have built for clients that have delivered the most measurable time savings, along with the technical details you need to replicate them.</p>
+
+    <h2>Workflow 1: AI-Powered Lead Enrichment on Inbound Form Submissions</h2>
+    <p>The problem: a sales team was spending 45 minutes per lead manually researching prospects before initial outreach — checking LinkedIn, the company website, Crunchbase, and recent news. With 30+ inbound leads per week, this was consuming nearly a full workday.</p>
+    <p>The workflow: when a form submission hits HubSpot, a webhook fires to n8n. n8n extracts the email domain, runs concurrent HTTP requests to Clearbit's Enrichment API (for company firmographics), a LinkedIn scraper, and a news search API. The raw data is fed into a Claude 4 prompt that produces a 150-word briefing: company size, funding stage, recent news, likely pain points given their industry, and a suggested opening line for the first email. The briefing is written back to a HubSpot contact property and Slacked to the assigned rep within 90 seconds of the form submission.</p>
+    <p>Time saved: approximately 22 hours per week for a team handling 30 qualified leads. The rep still reviews the briefing before sending — the workflow does not replace judgment, it eliminates research busywork.</p>
+
+    <h2>Workflow 2: Automated Client Reporting With Narrative Summaries</h2>
+    <p>Monthly reporting was consuming two full days of an account manager's time — pulling data from Google Analytics, Meta Ads, and a CRM, assembling it into a slide deck, and writing the narrative analysis. For an agency with eight active retainer clients, this was 16 person-days per month spent on reporting alone.</p>
+    <p>The workflow triggers on the first business day of each month. n8n pulls the previous month's data from each platform via their respective APIs, normalizes it into a consistent schema, and stores it in a Postgres table. A second node compares the current month to the prior three months to calculate trends. That trend data, combined with the client's stated goals (stored in an Airtable base), is passed to GPT-5 which generates a three-paragraph narrative: what happened, why it likely happened, and what it means for next month's priorities. The narrative and raw data tables are assembled into a Google Slides deck via the Slides API using a pre-built template. The deck is then emailed to the client automatically, with the account manager CC'd to review before it hits inboxes.</p>
+    <p>Time saved: 14 hours per month per account manager, or roughly 112 hours per month across the team. The account manager now spends 20 minutes reviewing and personalizing rather than 2 days building.</p>
+
+    <blockquote>
+      <p>"The best automation is invisible to the client. They get a polished, data-rich report that feels personally written. The team gets two days back. Nobody loses anything — time is just redistributed from assembly work to strategic work."</p>
+    </blockquote>
+
+    <h2>Workflow 3: Support Ticket Triage and Auto-Response</h2>
+    <p>A SaaS company with a small support team was receiving 150-200 tickets per day. The team spent the first two hours of each morning just reading and categorizing tickets before they could begin responding. Weekend backlogs were a recurring problem.</p>
+    <p>The workflow: every new ticket submitted via Intercom fires a webhook to n8n. The ticket body is passed to GPT-5 with a classification prompt that categorizes it into one of eight defined issue types (billing, bug report, feature request, account access, integration help, etc.) and assigns a priority score (1-3) based on urgency language and account tier. For issue types with documented resolutions — password reset, invoice request, plan change — n8n retrieves the relevant response template from a Notion database, personalizes it with the customer's account data, and sends an immediate draft reply in Intercom marked for agent review. For bug reports and priority-1 tickets, a Slack alert goes to the on-call engineer with the ticket summary and a link.</p>
+    <p>The auto-draft covers roughly 40% of tickets. Agents review and send the draft (with optional edits) in under 30 seconds instead of writing from scratch. The remaining 60% arrive pre-classified and prioritized, eliminating the morning triage session entirely.</p>
+    <p>Time saved: approximately 8 hours per day across the support team. First response time dropped from 4.2 hours average to 38 minutes.</p>
+
+    <h2>Workflow 4: Content Repurposing Pipeline</h2>
+    <p>A B2B company was publishing one long-form blog post per week and doing nothing with it afterward. The content team had no capacity to manually repurpose each post into LinkedIn posts, Twitter threads, newsletter snippets, and short-form video scripts. Good content was sitting unused.</p>
+    <p>The workflow is triggered when a new post is published to WordPress (via RSS or webhook). n8n fetches the full post content and passes it through a four-branch parallel workflow:</p>
+    <ul>
+      <li><strong>LinkedIn post:</strong> Claude 4 generates a 200-word post in the brand voice, formatted with line breaks for feed readability, along with three hashtag suggestions</li>
+      <li><strong>Twitter/X thread:</strong> GPT-5 breaks the post into a 6-8 tweet thread with a hook tweet and clear numbering</li>
+      <li><strong>Newsletter excerpt:</strong> A 120-word teaser paragraph optimized for email subject line curiosity gap, plus a suggested subject line</li>
+      <li><strong>Video script:</strong> A 90-second spoken script (approximately 250 words) for a talking-head video, structured with a hook, three points, and a CTA</li>
+    </ul>
+    <p>All four outputs are written to a shared Notion database with the source post linked. The social media scheduler is alerted via Slack with links to review and schedule. The whole process runs in under 3 minutes per post with zero human time involved until the review stage.</p>
+    <p>Time saved: 6-8 hours per week. Content distribution frequency increased from 1 to 12+ touchpoints per original piece.</p>
+
+    <h2>Workflow 5: Invoice Processing and Accounts Payable Automation</h2>
+    <p>A professional services firm was receiving 60-80 vendor invoices per month via email. Each invoice required manual data entry into their accounting system, matching against purchase orders, and routing for approval. An accounts payable contractor was handling this part-time at significant cost.</p>
+    <p>The workflow monitors a dedicated invoices@ email inbox via IMAP polling every 15 minutes. When a new email with a PDF attachment arrives, n8n downloads the PDF, converts it to text using a document processing API (we use Mathpix for structured documents), and passes the extracted text to GPT-5 with a structured extraction prompt. The model returns a JSON object with vendor name, invoice number, date, line items, subtotal, tax, and total. n8n validates the extracted data (checks totals match line items, flags missing fields), looks up the vendor in the accounting system, and — if the invoice amount is under the auto-approval threshold — creates the AP entry directly via API. Invoices above the threshold, or those with validation errors, are routed to a Slack approval workflow where the approver can confirm or reject with a button click.</p>
+    <p>Time saved: approximately 14 hours per month. The AP contractor's engagement was reduced from part-time to a 2-hour monthly review of the exception log.</p>
+
+    <h2>Building Your First n8n Workflow: Where to Start</h2>
+    <p>If you are new to n8n, the entry point that pays off fastest is almost always the one that replaces a manual data-transfer task your team does more than three times per week. Copy-paste between systems, manual email notifications, spreadsheet updates triggered by form submissions — these are the workflows that take 2 hours to build and save 5 hours per week indefinitely. Start there, get comfortable with n8n's node model and data handling, and then move to the more complex AI-assisted workflows described above. The time investment in learning the platform pays back within the first month on nearly every implementation we have done.</p>
+
+  </div>
+  <div class="mt-16 pt-10" style="border-top:1px solid rgba(255,255,255,.06)">
+    <p style="font-family:'Space Mono',monospace;font-size:.72rem;color:#3a4a6b;letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px">Ready to automate?</p>
+    <a href="/homepage.html" class="btn-p">Get Your Free Audit →</a>
+  </div>
+</main>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+</script>
+</body>
+</html>

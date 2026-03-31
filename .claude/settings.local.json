@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node screenshot.mjs http://localhost:3000 full)",
+      "Bash(node screenshot.mjs http://localhost:3000 full2)",
+      "Bash(node screenshot.mjs http://localhost:3000/homepage.html homepage)",
+      "Bash(node screenshot.mjs http://localhost:3000/homepage.html nav2)",
+      "Bash(node screenshot.mjs http://localhost:3000/homepage.html featured-check)",
+      "Bash(curl -s --max-time 10 \"https://mettamotion.com/wp-json/wp/v2/posts?per_page=1\")",
+      "Bash(curl -s -I \"https://mettamotion.com/wp-json/wp/v2/posts?per_page=1\")",
+      "Bash(node screenshot.mjs http://localhost:3000/homepage.html featured2)",
+      "Bash(node screenshot.mjs http://localhost:3000/homepage.html featured3)",
+      "Skill(gsd:resume-work)",
+      "Bash(node serve.mjs)",
+      "Bash(npx --yes kill-port 3000)",
+      "Bash(cd:*)",
+      "WebFetch(domain:mettamotion.com)",
+      "WebSearch",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(curl -s \"https://mettamotion.com/wp-json/wp/v2/posts?_embed&per_page=20&orderby=date&order=desc\")",
+      "Bash(curl -s \"https://mettamotion.com/wp-json/wp/v2/posts?_embed&slug=n8n-ai-automation-smart-workflows\")",
+      "Bash(node -e \"const d=require\\(''''fs''''\\).readFileSync\\(''''/dev/stdin'''',''''utf8''''\\);const p=JSON.parse\\(d\\);console.log\\(p[0].content.rendered.slice\\(0,800\\)\\)\")",
+      "Bash(curl -sI \"https://mettamotion.com/wp-json/wp/v2/posts?per_page=1\")"
+    ]
+  }
+}
