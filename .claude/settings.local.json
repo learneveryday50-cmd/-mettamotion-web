@@ -20,7 +20,8 @@
       "Bash(curl -s \"https://mettamotion.com/wp-json/wp/v2/posts?_embed&per_page=20&orderby=date&order=desc\")",
       "Bash(curl -s \"https://mettamotion.com/wp-json/wp/v2/posts?_embed&slug=n8n-ai-automation-smart-workflows\")",
       "Bash(node -e \"const d=require\\(''''fs''''\\).readFileSync\\(''''/dev/stdin'''',''''utf8''''\\);const p=JSON.parse\\(d\\);console.log\\(p[0].content.rendered.slice\\(0,800\\)\\)\")",
-      "Bash(curl -sI \"https://mettamotion.com/wp-json/wp/v2/posts?per_page=1\")"
+      "Bash(curl -sI \"https://mettamotion.com/wp-json/wp/v2/posts?per_page=1\")",
+      "Bash(powershell -Command \"Add-Type -Assembly System.IO.Compression.FileSystem; [System.IO.Compression.ZipFile]::OpenRead\\(''deploy2.zip''\\).Entries | Select-Object FullName\")"
     ]
   }
 }

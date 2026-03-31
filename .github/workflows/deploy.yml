@@ -12,26 +12,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy via FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          host: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          protocol: ftps
-          local-dir: ./
-          server-dir: ./
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/.claude/**
-            **/temporary screenshots/**
-            **/serve.mjs
-            **/screenshot.mjs
-            **/package.json
-            **/package-lock.json
-            **/*.md
-            **/wp-config.php
-            **/homepage.html
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: 65002
+          script: |
+            echo "Connected"
+
+      - name: Upload files via rsync
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -avz --delete --exclude='.git*' --exclude='node_modules/' --exclude='.claude/' --exclude='temporary screenshots/' --exclude='serve.mjs' --exclude='screenshot.mjs' --exclude='package.json' --exclude='package-lock.json' --exclude='*.md' --exclude='wp-config.php' --exclude='homepage.html'
+          path: ./
+          remote_path: public_html/
+          remote_host: ${{ secrets.FTP_SERVER }}
+          remote_port: 65002
+          remote_user: ${{ secrets.FTP_USERNAME }}
+          remote_password: ${{ secrets.SSH_PASSWORD }}
