@@ -12,23 +12,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Copy files via SCP
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: 65002
-          script: |
-            echo "Connected"
-
-      - name: Upload files via rsync
-        uses: burnett01/rsync-deployments@7.0.1
-        with:
-          switches: -avz --delete --exclude='.git*' --exclude='node_modules/' --exclude='.claude/' --exclude='temporary screenshots/' --exclude='serve.mjs' --exclude='screenshot.mjs' --exclude='package.json' --exclude='package-lock.json' --exclude='*.md' --exclude='wp-config.php' --exclude='homepage.html'
-          path: ./
-          remote_path: public_html/
-          remote_host: ${{ secrets.FTP_SERVER }}
-          remote_port: 65002
-          remote_user: ${{ secrets.FTP_USERNAME }}
-          remote_password: ${{ secrets.SSH_PASSWORD }}
+          source: "index.html,blog,brand_asset,.htaccess"
+          target: public_html/
+          overwrite: true
