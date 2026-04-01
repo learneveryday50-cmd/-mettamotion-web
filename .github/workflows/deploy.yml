@@ -20,5 +20,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 65002
           source: "index.html,blog,brand_asset,.htaccess"
-          target: public_html/
+          target: domains/mettamotion.com/public_html/
           overwrite: true
