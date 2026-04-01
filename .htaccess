@@ -7,9 +7,13 @@ RewriteBase /
 # Serve static homepage at root
 RewriteRule ^$ index.html [L]
 
+# Serve static blog listing page
+RewriteRule ^blog/?$ /blog/index.html [L]
+
 # Let WordPress handle everything else (API, admin, posts, etc.)
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
 </IfModule>
+
