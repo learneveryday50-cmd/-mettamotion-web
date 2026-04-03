@@ -1,7 +1,7 @@
 name: Assign Featured Images
 
 on:
-  workflow_dispatch:   # run manually from GitHub Actions tab
+  workflow_dispatch:
 
 jobs:
   assign:
@@ -10,16 +10,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Upload PHP script to server
+        uses: appleboy/scp-action@v0.1.7
         with:
-          node-version: '20'
+          host: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 65002
+          source: "assign-images.php"
+          target: /tmp/
 
-      - name: Run assign-images script
-        env:
-          WP_URL: ${{ secrets.WP_URL }}
-          WP_USER: ${{ secrets.WP_USER }}
-          WP_APP_PASS: ${{ secrets.WP_APP_PASS }}
-          PEXELS_KEY: ${{ secrets.PEXELS_KEY }}
-          SEARCH_QUERY: automation workflow technology n8n
-        run: node assign-images.mjs
+      - name: Run script on server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 65002
+          envs: WP_USER,WP_APP_PASS,PEXELS_KEY,SEARCH_QUERY
+          script: |
+            export WP_USER="${{ secrets.WP_USER }}"
+            export WP_APP_PASS="${{ secrets.WP_APP_PASS }}"
+            export PEXELS_KEY="${{ secrets.PEXELS_KEY }}"
+            export SEARCH_QUERY="automation workflow technology n8n"
+            php /tmp/assign-images.php
+            rm /tmp/assign-images.php
