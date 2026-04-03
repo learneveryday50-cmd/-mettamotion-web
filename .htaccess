@@ -38,7 +38,7 @@ DirectoryIndex index.html index.php
   RewriteEngine On
   RewriteBase /
 
-  RewriteRule ^$ index.html [L]
+  RewriteRule ^(index\.html)?$ /index.html [L]
   RewriteRule ^blog/?$ /blog/index.html [L]
 
   RewriteRule ^index\.php$ - [L]
