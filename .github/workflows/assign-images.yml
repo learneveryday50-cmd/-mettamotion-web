@@ -1,0 +1,25 @@
+name: Assign Featured Images
+
+on:
+  workflow_dispatch:   # run manually from GitHub Actions tab
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run assign-images script
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASS: ${{ secrets.WP_APP_PASS }}
+          PEXELS_KEY: ${{ secrets.PEXELS_KEY }}
+          SEARCH_QUERY: automation workflow technology n8n
+        run: node assign-images.mjs
