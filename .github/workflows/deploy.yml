@@ -5,12 +5,29 @@ on:
     branches:
       - main
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Tailwind CSS
+        run: npx tailwindcss -i src/input.css -o assets/styles.css --minify
+
+      - name: Patch HTML files (replace CDN with local CSS)
+        run: node build.mjs
 
       - name: Copy files via SCP
         uses: appleboy/scp-action@v0.1.7
@@ -19,6 +36,6 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 65002
-          source: "index.html,blog,brand_asset,.htaccess"
+          source: "index.html,blog,brand_asset,.htaccess,assets"
           target: domains/mettamotion.com/public_html/
           overwrite: true
