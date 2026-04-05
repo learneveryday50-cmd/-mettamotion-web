@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Refund Policy — Mettamotion</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" /></noscript>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:  { DEFAULT:'#080d18', 2:'#0d1526', 3:'#111d35', 4:'#182440' },
+            brand: { DEFAULT:'#1a6fff', dim:'#1256cc', glow:'#4d97ff' },
+            teal:  { DEFAULT:'#00d4ff', dim:'#00a8cc' },
+            smoke: { DEFAULT:'#8a9bbf', dim:'#3a4a6b' },
+          },
+          fontFamily: {
+            display: ['Space Grotesk','sans-serif'],
+            body:    ['DM Sans','sans-serif'],
+            mono:    ['Space Mono','monospace'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:#080d18;color:#fff;font-family:'DM Sans',sans-serif;overflow-x:hidden}
+    body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size:128px 128px;opacity:0.025}
+    #nav{transition:background .3s,box-shadow .3s,padding .3s}
+    #nav.scrolled{background:rgba(8,13,24,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(255,255,255,.05)}
+    .logo-img{filter:brightness(0) invert(1) drop-shadow(0 0 6px rgba(0,212,255,.45));transition:transform .2s}
+    .logo-img:hover{transform:scale(1.06)}
+    .btn-p{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:8px;
+      background:#1a6fff;color:#fff;font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;
+      letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+      box-shadow:0 4px 20px rgba(26,111,255,.35),0 0 0 1px rgba(26,111,255,.15);
+      transition:background .2s,box-shadow .2s,transform .15s}
+    .btn-p:hover{background:#4d97ff;box-shadow:0 8px 36px rgba(26,111,255,.5);transform:translateY(-2px)}
+    .policy-body h2{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;margin:2rem 0 .6rem}
+    .policy-body h3{font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:600;color:#c8d6f0;margin:1.4rem 0 .4rem}
+    .policy-body p{font-size:.9rem;color:#8a9bbf;line-height:1.8;margin-bottom:.75rem}
+    .policy-body ul{list-style:disc;padding-left:1.4rem;margin-bottom:.75rem}
+    .policy-body ul li{font-size:.9rem;color:#8a9bbf;line-height:1.8;margin-bottom:.3rem}
+    .policy-body a{color:#4d97ff;text-decoration:none}
+    .policy-body a:hover{text-decoration:underline}
+    .highlight-box{background:rgba(26,111,255,.08);border:1px solid rgba(26,111,255,.18);border-radius:12px;padding:20px 24px;margin:1.5rem 0}
+    .highlight-box p{margin-bottom:0}
+  </style>
+</head>
+<body class="relative">
+
+<!-- NAV -->
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 py-5">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between gap-6">
+    <a href="/index.html" class="flex items-center">
+      <img src="/brand_asset/LogoMakr-9nt01b.png" alt="Mettamotion" class="logo-img" style="height:42px;width:auto" />
+    </a>
+    <ul class="hidden md:flex items-center gap-10" style="list-style:none">
+      <li><a href="/blog" style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:.01em;color:#ffffff;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#00d4ff'" onmouseout="this.style.color='#ffffff'">Blog</a></li>
+      <li><a href="/contact" style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:.01em;color:#ffffff;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#00d4ff'" onmouseout="this.style.color='#ffffff'">Contact</a></li>
+    </ul>
+    <a href="/free-audit" class="btn-p">Free Audit →</a>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<main style="position:relative;z-index:1;padding-top:120px;padding-bottom:80px">
+  <div class="max-w-3xl mx-auto px-6">
+
+    <div style="margin-bottom:2.5rem">
+      <div style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#00d4ff;margin-bottom:.75rem">// Legal</div>
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-size:2.4rem;font-weight:700;line-height:1.15;color:#fff;margin-bottom:1rem">Refund Policy</h1>
+      <p style="font-size:.85rem;color:#3a4a6b;font-family:'Space Mono',monospace">Last updated: April 5, 2026</p>
+    </div>
+
+    <div class="policy-body">
+
+      <p>We want you to be satisfied with your purchase. This Refund Policy outlines the terms under which refunds may be issued for Mettamotion products and services.</p>
+
+      <div class="highlight-box">
+        <p style="color:#c8d6f0">All purchases are processed by <strong>Paddle</strong>, our authorized reseller and merchant of record. Refund requests may be submitted directly through Paddle or by contacting us at <a href="mailto:hello@mettamotion.com">hello@mettamotion.com</a>.</p>
+      </div>
+
+      <h2>1. Digital Products</h2>
+      <p>Due to the digital nature of our products (templates, guides, toolkits, and other downloadable assets), we offer a <strong style="color:#fff">14-day money-back guarantee</strong> from the date of purchase. If you are not satisfied with your purchase for any reason, contact us within 14 days and we will issue a full refund — no questions asked.</p>
+      <p>Refunds will not be issued after 14 days from the purchase date.</p>
+
+      <h2>2. Subscription Plans</h2>
+      <p>For monthly or annual subscription plans:</p>
+      <ul>
+        <li>You may cancel your subscription at any time from your account dashboard</li>
+        <li>Cancellations take effect at the end of the current billing period — you retain access until then</li>
+        <li>We do not provide prorated refunds for unused time in a billing period unless required by applicable law</li>
+        <li>Annual subscriptions cancelled within 14 days of the initial purchase date are eligible for a full refund</li>
+      </ul>
+
+      <h2>3. Consulting and Service Engagements</h2>
+      <p>For custom consulting, strategy, or done-for-you service packages:</p>
+      <ul>
+        <li>A full refund is available if you cancel before work has commenced</li>
+        <li>Once work has begun, refunds are assessed on a case-by-case basis based on the proportion of work completed</li>
+        <li>No refunds are issued after full delivery of the agreed scope of work</li>
+      </ul>
+
+      <h2>4. Non-Refundable Items</h2>
+      <p>The following are not eligible for refunds:</p>
+      <ul>
+        <li>Purchases made more than 14 days ago (for digital products)</li>
+        <li>Services where full delivery has been completed and accepted</li>
+        <li>Accounts suspended or terminated due to violation of our <a href="/terms">Terms of Service</a></li>
+      </ul>
+
+      <h2>5. How to Request a Refund</h2>
+      <p>To request a refund, email us at <a href="mailto:hello@mettamotion.com">hello@mettamotion.com</a> with:</p>
+      <ul>
+        <li>Your name and the email address used at purchase</li>
+        <li>Your order or transaction ID</li>
+        <li>The reason for your refund request</li>
+      </ul>
+      <p>We aim to process all refund requests within 5 business days. Refunds are returned to the original payment method via Paddle.</p>
+
+      <h2>6. Chargebacks</h2>
+      <p>We ask that you contact us before initiating a chargeback with your bank or card issuer. We are committed to resolving issues fairly and directly. Initiating a chargeback without first contacting us may result in account suspension pending investigation.</p>
+
+      <h2>7. Contact</h2>
+      <p>Questions about refunds? Contact us at <a href="mailto:hello@mettamotion.com">hello@mettamotion.com</a> and we will be happy to help.</p>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer style="background:#080d18;border-top:1px solid rgba(255,255,255,.05);padding:56px 0 28px">
+  <div class="max-w-7xl mx-auto px-6">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px">
+      <div>
+        <a href="/index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;margin-bottom:16px">
+          <img src="/brand_asset/LogoMakr-9nt01b.png" alt="Mettamotion" class="logo-img" style="height:28px;width:auto" />
+          <div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:700;color:#fff">METTAMOTION</div>
+            <div style="font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.16em;color:#3a4a6b;text-transform:uppercase">Build · Automate · Scale</div>
+          </div>
+        </a>
+        <p style="font-size:.83rem;color:#8a9bbf;line-height:1.75;max-width:240px">AI automation, SEO, and digital marketing insights for builders who want results.</p>
+      </div>
+      <div>
+        <h4 style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#8a9bbf;margin-bottom:18px">Topics</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:11px">
+          <li><a href="#" style="font-size:.83rem;color:#8a9bbf;text-decoration:none" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">AI Automation</a></li>
+          <li><a href="#" style="font-size:.83rem;color:#8a9bbf;text-decoration:none" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">SEO Strategy</a></li>
+          <li><a href="#" style="font-size:.83rem;color:#8a9bbf;text-decoration:none" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">Digital Marketing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#8a9bbf;margin-bottom:18px">Company</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:11px">
+          <li><a href="/blog" style="font-size:.83rem;color:#8a9bbf;text-decoration:none" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">Blog</a></li>
+          <li><a href="/contact" style="font-size:.83rem;color:#8a9bbf;text-decoration:none" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">Contact</a></li>
+          <li><a href="/free-audit" style="font-size:.83rem;color:#8a9bbf;text-decoration:none" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">Free Audit</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#8a9bbf;margin-bottom:18px">Legal</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:11px">
+          <li><a href="/privacy" style="font-size:.83rem;color:#8a9bbf;text-decoration:none" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">Privacy Policy</a></li>
+          <li><a href="/terms" style="font-size:.83rem;color:#8a9bbf;text-decoration:none" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9bbf'">Terms of Service</a></li>
+          <li><a href="/refund" style="font-size:.83rem;color:#fff;text-decoration:none">Refund Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid rgba(255,255,255,.05);flex-wrap:wrap;gap:16px">
+      <div style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:#3a4a6b">© 2026 Mettamotion. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
+</script>
+</body>
+</html>
