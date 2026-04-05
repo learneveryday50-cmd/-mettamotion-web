@@ -26,6 +26,9 @@ const HTML_FILES = [
   'blog/n8n-workflows/index.html',
   'blog/prompt-engineering-dead/index.html',
   'blog/seo-ai-search/index.html',
+  'terms/index.html',
+  'privacy/index.html',
+  'refund/index.html',
 ];
 
 // Matches: <script src="https://cdn.tailwindcss.com"></script>

@@ -3,6 +3,9 @@ module.exports = {
   content: [
     './index.html',
     './blog/**/*.html',
+    './terms/**/*.html',
+    './privacy/**/*.html',
+    './refund/**/*.html',
   ],
   theme: {
     extend: {
