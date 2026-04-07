@@ -29,6 +29,7 @@ const HTML_FILES = [
   'terms/index.html',
   'privacy/index.html',
   'refund/index.html',
+  'tools/index.html',
 ];
 
 // Matches: <script src="https://cdn.tailwindcss.com"></script>

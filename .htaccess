@@ -43,6 +43,7 @@ DirectoryIndex index.html index.php
   RewriteRule ^terms/?$ /terms/index.html [L]
   RewriteRule ^privacy/?$ /privacy/index.html [L]
   RewriteRule ^refund/?$ /refund/index.html [L]
+  RewriteRule ^tools/?$ /tools/index.html [L]
 
   RewriteRule ^index\.php$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f

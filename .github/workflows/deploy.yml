@@ -36,6 +36,6 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 65002
-          source: "index.html,blog,brand_asset,.htaccess,assets,terms,privacy,refund"
+          source: "index.html,blog,brand_asset,.htaccess,assets,terms,privacy,refund,tools"
           target: domains/mettamotion.com/public_html/
           overwrite: true
