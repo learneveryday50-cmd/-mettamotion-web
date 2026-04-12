@@ -294,6 +294,28 @@
     { keywords: ['digital marketing roadmap', 'high-roi', 'roi skills'], imgs: ['https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=1200&q=80'] },
     { keywords: ['remote work', 'work from home', 'remote'],             imgs: ['https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=1200&q=80'] },
     { keywords: ['photography', 'camera', 'photo'],                      imgs: ['https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1200&q=80'] },
+    // Etsy / ecommerce — specific before generic marketing
+    { keywords: ['etsy', 'handmade', 'ecommerce', 'e-commerce', 'shopify', 'online store', 'marketplace seller', 'product listing'], imgs: [
+        'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80',
+        'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1200&q=80',
+        'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=1200&q=80',
+        'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&q=80',
+        'https://images.unsplash.com/photo-1556742393-d75f468bfcb0?w=1200&q=80',
+    ]},
+    // Marketing platforms / social media / emerging channels
+    { keywords: ['emerging platform', 'marketing platform', 'social media platform', 'dominate', 'new platform', 'platform strategy'], imgs: [
+        'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&q=80',
+        'https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=1200&q=80',
+        'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&q=80',
+        'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=1200&q=80',
+    ]},
+    // Trends / sales / revenue growth
+    { keywords: ['trend', 'triple sales', 'sales fast', 'triple revenue', 'boost sales', 'skyrocket', 'sales growth'], imgs: [
+        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
+        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80',
+        'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1200&q=80',
+        'https://images.unsplash.com/photo-1579621970795-87facc2f976d?w=1200&q=80',
+    ]},
     { keywords: ['n8n', 'make.com', 'zapier', 'automation', 'workflow', 'automate'], imgs: [
         'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=1200&q=80',
         'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
@@ -309,7 +331,14 @@
         'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80',
         'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&q=80',
     ]},
-    { keywords: ['marketing', 'growth', 'brand'],                        imgs: ['https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=1200&q=80'] },
+    // Generic marketing — multiple images so posts in the same category vary
+    { keywords: ['marketing', 'growth', 'brand', 'sales', 'campaign', 'audience', 'conversion'], imgs: [
+        'https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=1200&q=80',
+        'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1200&q=80',
+        'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80',
+        'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&q=80',
+        'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=1200&q=80',
+    ]},
   ];
 
   const DEFAULT_IMGS = [
@@ -334,7 +363,10 @@
   }
 
   function getPostImage(post) {
-    return post._embedded?.['wp:featuredmedia']?.[0]?.source_url || getFallbackImage(stripHtml(post.title.rendered), post.slug || post.id?.toString() || '');
+    const wpImg = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+    // Skip featured image if it's a duplicate (same image used across multiple posts)
+    if (wpImg && !(window._duplicateImgUrls?.has(wpImg))) return wpImg;
+    return getFallbackImage(stripHtml(post.title.rendered), post.slug || post.id?.toString() || '');
   }
 
   function isJunkPost(post) {
@@ -503,6 +535,18 @@
 
       const cleanPosts = posts.filter(p => !isJunkPost(p));
       if (!cleanPosts.length) { document.getElementById('empty-state').classList.remove('hidden'); gridEl.innerHTML = ''; return; }
+
+      // Build set of featured image URLs that appear on more than one post.
+      // These are "generic" images (e.g. a YouTube icon used on every post) and
+      // should be replaced by unique keyword-based fallbacks per post.
+      const imgCount = {};
+      cleanPosts.forEach(p => {
+        const url = p._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+        if (url) imgCount[url] = (imgCount[url] || 0) + 1;
+      });
+      window._duplicateImgUrls = new Set(
+        Object.entries(imgCount).filter(([, n]) => n > 1).map(([u]) => u)
+      );
 
       window._allPosts = cleanPosts;
 
