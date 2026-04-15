@@ -687,7 +687,7 @@
 
   function getFeaturedImage(post) {
     const src = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
-    if (src) return src;
+    if (src && !(window._duplicateImgUrls?.has(src))) return src;
     const title = stripHtml(post.title.rendered || '').toLowerCase();
     const slug  = post.slug || post.id?.toString() || '';
     for (const { keywords, imgs } of FALLBACK_IMAGES) {
@@ -822,6 +822,18 @@
   fetch(WP_API)
     .then(r => r.json())
     .then(posts => {
+      // Build set of featured image URLs that appear on more than one post.
+      // These are generic images (e.g. a YouTube icon used on every post) and
+      // should be replaced by unique keyword-based fallbacks per post.
+      const imgCount = {};
+      posts.forEach(p => {
+        const url = p._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+        if (url) imgCount[url] = (imgCount[url] || 0) + 1;
+      });
+      window._duplicateImgUrls = new Set(
+        Object.entries(imgCount).filter(([, n]) => n > 1).map(([u]) => u)
+      );
+
       grid.innerHTML = posts.map(buildCard).join('');
       pgn.style.display = 'flex';
       // Stagger fade-in
